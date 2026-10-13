@@ -36,6 +36,7 @@ Depends:
  accountsservice,
  appstream,
  bluez,
+ libpam-runtime,
  flatpak,
  kde-cli-tools,
  kernora-base (>= 1.4),

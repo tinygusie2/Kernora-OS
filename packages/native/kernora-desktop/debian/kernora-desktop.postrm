@@ -1,10 +1,6 @@
 #!/bin/sh
 set -e
 
-if [ "$1" = remove ] && command -v pam-auth-update >/dev/null 2>&1; then
-    pam-auth-update --package --remove kernora-pin || true
-fi
-
 if [ "$1" = remove ]; then
     update-alternatives --remove x-cursor-theme /usr/share/icons/kernora_cursors/cursor.theme || true
 fi

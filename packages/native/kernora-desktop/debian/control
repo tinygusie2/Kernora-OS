@@ -11,8 +11,6 @@ Architecture: all
 Depends:
  ${misc:Depends},
  breeze-gtk-theme,
- libpam-runtime,
- perl-base,
  fonts-roboto-unhinted,
  kwin-common,
  plasma-desktop,

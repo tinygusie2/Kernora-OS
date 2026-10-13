@@ -113,7 +113,7 @@ SettingsPage {
         }
         ListItem {
             title: i18n("PIN")
-            subtitle: page.pinSet ? i18n("Unlock the screen and log in with a short number") : i18n("Not set · unlock with a short number instead of your password")
+            subtitle: page.pinSet ? i18n("Unlock the screen with a short number") : i18n("Not set · unlock with a short number instead of your password")
             icon: "lock"
             accent: 4
             chevron: true
@@ -274,20 +274,26 @@ SettingsPage {
 
     property bool pinSet: Accounts.hasPin()
 
-    Connections {
-        target: Accounts
-        function onChanged(): void { page.pinSet = Accounts.hasPin(); }
+    function runPin(action: string, pin: string, done: string): void {
+        Process.run("pkexec", ["/usr/libexec/kernora-pin", action], code => {
+            page.pinSet = Accounts.hasPin();
+            if (code === 0) {
+                page.notify(done);
+            } else if (code !== 126 && code !== 127) {
+                page.notify(i18n("The PIN could not be saved"));
+            }
+        }, pin + "\n");
     }
 
     Dialog {
         id: pinDialog
 
-        readonly property bool digitsOnly: /^[0-9]{4,12}$/.test(newPin.text)
+        readonly property bool digitsOnly: /^[0-9]{6,12}$/.test(newPin.text)
         readonly property bool matches: newPin.text === repeatPin.text
 
         icon: "lock"
         title: page.pinSet ? i18n("Change your PIN") : i18n("Set up a PIN")
-        text: i18n("Use 4 to 12 digits. The PIN works on the lock screen and the login screen; installing software and changing system settings still ask for your password. After five wrong PINs in a row, only the password works for five minutes.")
+        text: i18n("Use 6 to 12 digits. The PIN unlocks the lock screen. After a restart or when you log in, Lumo asks for your password first, and installing software or changing system settings always does. After five wrong PINs you have to wait longer and longer; after ten, the PIN is removed. Saving it asks for your password.")
         acceptText: i18n("Save")
         acceptEnabled: digitsOnly && matches
         onOpened: {
@@ -296,7 +302,7 @@ SettingsPage {
             newPin.forceActiveFocus();
         }
         onAccepted: {
-            page.notify(Accounts.setPin(newPin.text) ? i18n("Your PIN is set") : i18n("The PIN could not be saved"));
+            page.runPin("set", newPin.text, i18n("Your PIN is set"));
             newPin.text = "";
             repeatPin.text = "";
         }
@@ -308,7 +314,7 @@ SettingsPage {
             password: true
             input.inputMethodHints: Qt.ImhDigitsOnly
             input.maximumLength: 12
-            errorText: newPin.text.length > 0 && !pinDialog.digitsOnly ? i18n("4 to 12 digits") : ""
+            errorText: newPin.text.length > 0 && !pinDialog.digitsOnly ? i18n("6 to 12 digits") : ""
         }
         InputField {
             id: repeatPin
@@ -329,9 +335,8 @@ SettingsPage {
             text: i18n("Remove the PIN")
             flat: true
             onClicked: {
-                Accounts.removePin();
-                page.notify(i18n("The PIN is removed"));
                 pinDialog.close();
+                page.runPin("remove", "", i18n("The PIN is removed"));
             }
         }
     }

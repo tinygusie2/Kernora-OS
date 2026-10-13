@@ -13,7 +13,6 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QRegularExpression>
-#include <QSaveFile>
 #include <QImage>
 #include <QStandardPaths>
 #include <QTemporaryFile>
@@ -130,48 +129,9 @@ QString Accounts::hashPassword(const QString &password)
     return QString::fromLatin1(hash);
 }
 
-static QString pinFile()
-{
-    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/kernora/pin");
-}
-
 bool Accounts::hasPin() const
 {
-    return QFileInfo(pinFile()).size() > 0;
-}
-
-bool Accounts::setPin(const QString &pin)
-{
-    static const QRegularExpression digits(QStringLiteral("^[0-9]{4,12}$"));
-    if (!digits.match(pin).hasMatch()) {
-        return false;
-    }
-    const QString hash = hashPassword(pin);
-    if (hash.isEmpty()) {
-        return false;
-    }
-    const QString path = pinFile();
-    QDir().mkpath(QFileInfo(path).absolutePath());
-    QSaveFile file(path);
-    if (!file.open(QIODevice::WriteOnly)) {
-        return false;
-    }
-    file.setPermissions(QFileDevice::ReadOwner | QFileDevice::WriteOwner);
-    file.write(hash.toLatin1() + '\n');
-    if (!file.commit()) {
-        return false;
-    }
-    QFile::remove(path + QStringLiteral(".fail"));
-    Q_EMIT changed();
-    return true;
-}
-
-bool Accounts::removePin()
-{
-    QFile::remove(pinFile() + QStringLiteral(".fail"));
-    const bool removed = !QFile::exists(pinFile()) || QFile::remove(pinFile());
-    Q_EMIT changed();
-    return removed;
+    return QFileInfo::exists(QStringLiteral("/var/lib/kernora/pin/%1").arg(getuid()));
 }
 
 QString Accounts::validateUserName(const QString &name) const

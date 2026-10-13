@@ -109,8 +109,6 @@ generated/grub/kernora usr/share/grub/themes
 data/plymouth/plymouth-quit-kernora.conf usr/lib/systemd/system/plymouth-quit.service.d
 data/plymouth/sddm-plymouth.conf usr/lib/systemd/system/sddm.service.d
 data/drivers/kernora-drivers usr/libexec
-data/pin/kernora-pin-check usr/libexec
-data/pin/kernora-pin usr/share/pam-configs
 data/drivers/nvidia-archive-keyring.gpg usr/share/kernora
 data/drivers/kernora-drivers.service usr/lib/systemd/system
 data/drivers/kernora-drivers.timer usr/lib/systemd/system

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 cmake_minimum_required(VERSION 3.25)
-project(kernora-apps VERSION 1.1.35 LANGUAGES CXX)
+project(kernora-apps VERSION 1.1.35 LANGUAGES C CXX)
 
 set(QT_MIN_VERSION 6.8)
 set(KF_MIN_VERSION 6.13)
@@ -40,6 +40,7 @@ add_subdirectory(src/apps)
 add_subdirectory(src/filechooser)
 add_subdirectory(src/updatenotifier)
 add_subdirectory(src/bluetoothagent)
+add_subdirectory(src/pin)
 
 set(KERNORA_APPS settings files welcome editor photos player calculator screenshot store tasks calendar)
 foreach(app ${KERNORA_APPS})
