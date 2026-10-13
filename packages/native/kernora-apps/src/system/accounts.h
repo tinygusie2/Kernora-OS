@@ -40,6 +40,9 @@ public:
     Q_INVOKABLE void setAvatar(const QUrl &image);
     Q_INVOKABLE QList<QUrl> stockAvatars() const;
     Q_INVOKABLE void setPassword(const QString &password);
+    Q_INVOKABLE bool hasPin() const;
+    Q_INVOKABLE bool setPin(const QString &pin);
+    Q_INVOKABLE bool removePin();
 
     QVariantList users() const { return m_users; }
     Q_INVOKABLE QString validateUserName(const QString &name) const;

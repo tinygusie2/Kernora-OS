@@ -374,7 +374,8 @@ Item {
                             Text {
                                 anchors.verticalCenter: parent.verticalCenter
                                 visible: password.text.length === 0
-                                text: root.tr("Password")
+                                text: Qt.locale().name.startsWith("nl") ? "Wachtwoord of pincode"
+                                    : Qt.locale().name.startsWith("ru") ? "Пароль или PIN-код" : "Password or PIN"
                                 color: M3.darkScheme.surfaceVariantContent
                                 font: password.font
                             }

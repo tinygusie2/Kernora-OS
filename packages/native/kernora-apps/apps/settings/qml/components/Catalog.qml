@@ -85,6 +85,7 @@ QtObject {
             [i18n("File search"), "privacy", "", i18n("indexing baloo search files")],
             [i18n("Recent files"), "privacy", "", i18n("history clear activity")],
             [i18n("Password"), "account", "", i18n("change password login")],
+            [i18n("PIN"), "account", "", i18n("pin code number unlock lock screen login windows hello")],
             [i18n("Account picture"), "account", "", i18n("avatar photo face user")],
             [i18n("Name"), "account", "", i18n("full name user")],
             [i18n("Accounts"), "account", "AccountsPage.qml", i18n("users people add account administrator delete user")],

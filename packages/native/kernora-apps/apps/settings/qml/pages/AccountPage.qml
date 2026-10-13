@@ -111,6 +111,14 @@ SettingsPage {
             chevron: true
             onClicked: passwordDialog.open()
         }
+        ListItem {
+            title: i18n("PIN")
+            subtitle: page.pinSet ? i18n("Unlock the screen and log in with a short number") : i18n("Not set · unlock with a short number instead of your password")
+            icon: "lock"
+            accent: 4
+            chevron: true
+            onClicked: pinDialog.open()
+        }
     }
 
     Group {
@@ -263,4 +271,69 @@ SettingsPage {
             }
         }
     }
+
+    property bool pinSet: Accounts.hasPin()
+
+    Connections {
+        target: Accounts
+        function onChanged(): void { page.pinSet = Accounts.hasPin(); }
+    }
+
+    Dialog {
+        id: pinDialog
+
+        readonly property bool digitsOnly: /^[0-9]{4,12}$/.test(newPin.text)
+        readonly property bool matches: newPin.text === repeatPin.text
+
+        icon: "lock"
+        title: page.pinSet ? i18n("Change your PIN") : i18n("Set up a PIN")
+        text: i18n("Use 4 to 12 digits. The PIN works on the lock screen and the login screen; installing software and changing system settings still ask for your password. After five wrong PINs in a row, only the password works for five minutes.")
+        acceptText: i18n("Save")
+        acceptEnabled: digitsOnly && matches
+        onOpened: {
+            newPin.text = "";
+            repeatPin.text = "";
+            newPin.forceActiveFocus();
+        }
+        onAccepted: {
+            page.notify(Accounts.setPin(newPin.text) ? i18n("Your PIN is set") : i18n("The PIN could not be saved"));
+            newPin.text = "";
+            repeatPin.text = "";
+        }
+
+        InputField {
+            id: newPin
+            Layout.fillWidth: true
+            label: i18n("New PIN")
+            password: true
+            input.inputMethodHints: Qt.ImhDigitsOnly
+            input.maximumLength: 12
+            errorText: newPin.text.length > 0 && !pinDialog.digitsOnly ? i18n("4 to 12 digits") : ""
+        }
+        InputField {
+            id: repeatPin
+            Layout.fillWidth: true
+            label: i18n("Repeat the PIN")
+            password: true
+            input.inputMethodHints: Qt.ImhDigitsOnly
+            input.maximumLength: 12
+            errorText: repeatPin.text.length > 0 && !pinDialog.matches ? i18n("The PINs are different") : ""
+            onAccepted: {
+                if (pinDialog.acceptEnabled) {
+                    pinDialog.accept();
+                }
+            }
+        }
+        QQC2.Button {
+            visible: page.pinSet
+            text: i18n("Remove the PIN")
+            flat: true
+            onClicked: {
+                Accounts.removePin();
+                page.notify(i18n("The PIN is removed"));
+                pinDialog.close();
+            }
+        }
+    }
+
 }

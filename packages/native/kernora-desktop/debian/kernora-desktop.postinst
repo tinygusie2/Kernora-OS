@@ -7,6 +7,9 @@ if [ "$1" = configure ]; then
     if dpkg --compare-versions "$2" lt 1.4.28         && [ -e /usr/lib/systemd/system/NetworkManager-wait-online.service ]; then
         systemctl disable NetworkManager-wait-online.service >/dev/null 2>&1 || true
     fi
+    if command -v pam-auth-update >/dev/null 2>&1; then
+        pam-auth-update --package || true
+    fi
     if [ -e /boot/grub/grub.cfg ] && command -v update-grub >/dev/null 2>&1; then
         update-grub || true
     fi

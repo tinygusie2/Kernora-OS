@@ -1,0 +1,52 @@
+#!/bin/sh
+# SPDX-FileCopyrightText: 2026 Lumo contributors
+# SPDX-License-Identifier: GPL-2.0-or-later
+set -u
+
+[ "${PAM_TYPE:-}" = auth ] || exit 1
+case "${PAM_SERVICE:-}" in
+    kde|kde-fingerprint|sddm|sddm-autologin|kscreensaver) ;;
+    *) exit 1 ;;
+esac
+
+user=${PAM_USER:-}
+[ -n "$user" ] || exit 1
+entry=$(getent passwd "$user") || exit 1
+uid=$(printf '%s' "$entry" | cut -d: -f3)
+home=$(printf '%s' "$entry" | cut -d: -f6)
+pin="$home/.local/share/kernora/pin"
+fail="$pin.fail"
+
+[ -f "$pin" ] && [ ! -L "$pin" ] || exit 1
+[ "$(stat -c %u "$pin")" = "$uid" ] || exit 1
+case "$(stat -c %a "$pin")" in
+    600|400) ;;
+    *) exit 1 ;;
+esac
+
+token=$(head -c 64 | tr -d '\000\n')
+case "$token" in
+    ''|*[!0-9]*) exit 1 ;;
+esac
+[ "${#token}" -ge 4 ] && [ "${#token}" -le 12 ] || exit 1
+
+now=$(date +%s)
+count=0
+last=0
+if [ -f "$fail" ]; then
+    read -r count last < "$fail" 2>/dev/null || true
+fi
+case "$count$last" in *[!0-9]*|'') count=0; last=0 ;; esac
+if [ "$count" -ge 5 ] && [ $((now - last)) -lt 300 ]; then
+    exit 1
+fi
+
+if PIN="$token" HASH="$(head -n 1 "$pin")" perl -e 'exit(crypt($ENV{PIN}, $ENV{HASH}) eq $ENV{HASH} ? 0 : 1)'; then
+    [ "$(id -u)" = "$uid" ] && rm -f "$fail"
+    exit 0
+fi
+
+if [ "$(id -u)" = "$uid" ]; then
+    printf '%s %s\n' $((count + 1)) "$now" > "$fail"
+fi
+exit 1

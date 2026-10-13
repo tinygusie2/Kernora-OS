@@ -105,6 +105,11 @@ find /usr/share/fonts -name 'Roboto-Regular.ttf' -print -quit | grep -q . \
   || fail "Google Sans Flex, the shell typeface, is not installed"
 grep -q '^font=Google Sans Flex,' /etc/xdg/kdeglobals \
   || fail "kdeglobals does not set Google Sans Flex"
+[[ -x /usr/libexec/kernora-pin-check ]] || fail "the PIN check is not installed"
+grep -q 'pam_exec.so quiet expose_authtok /usr/libexec/kernora-pin-check' /etc/pam.d/common-auth \
+  || fail "the lock screen does not accept a PIN"
+grep -q 'pam_unix.so .*try_first_pass' /etc/pam.d/common-auth \
+  || fail "the password no longer works after the PIN check"
 for tool in wine gamemoderun mangohud; do
   command -v "$tool" >/dev/null || fail "$tool is not installed"
 done
