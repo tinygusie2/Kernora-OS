@@ -32,6 +32,12 @@ msgstr "Bluetooth"
 msgid "Pairing, connected devices"
 msgstr "Koppelen, verbonden apparaten"
 
+msgid "Phone"
+msgstr "Telefoon"
+
+msgid "Notifications, texts, files, find my phone"
+msgstr "Meldingen, berichten, bestanden, telefoon zoeken"
+
 msgid "Display & brightness"
 msgstr "Beeldscherm en helderheid"
 
@@ -139,6 +145,12 @@ msgstr "Een nieuw apparaat koppelen"
 
 msgid "bluetooth headphones speaker mouse keyboard add"
 msgstr "bluetooth koptelefoon speaker muis toetsenbord toevoegen koppelen"
+
+msgid "Connect a phone"
+msgstr "Een telefoon koppelen"
+
+msgid "phone link kde connect android iphone sms text message notifications clipboard share files photos"
+msgstr "telefoon koppelen kde connect android iphone sms bericht meldingen klembord bestanden delen foto's phone link"
 
 msgid "Brightness"
 msgstr "Helderheid"
@@ -2596,6 +2608,135 @@ msgstr "Pop-ups toegestaan"
 
 msgid "Only in the history"
 msgstr "Alleen in de geschiedenis"
+
+msgid "See your phone's notifications here, send texts, share files and the clipboard, and find your phone."
+msgstr "Zie hier de meldingen van je telefoon, stuur berichten, deel bestanden en het klembord, en vind je telefoon terug."
+
+msgid "Send files to your phone"
+msgstr "Bestanden naar je telefoon sturen"
+
+msgid "Sent to %1"
+msgstr "Verstuurd naar %1"
+
+msgid "Couldn't send the file"
+msgstr "Het bestand kon niet worden verstuurd"
+
+msgid "Send a text message"
+msgstr "Een sms sturen"
+
+msgid "The message is sent from %1."
+msgstr "Het bericht wordt verstuurd vanaf %1."
+
+msgid "Send"
+msgstr "Versturen"
+
+msgid "Text message sent"
+msgstr "Sms verstuurd"
+
+msgid "Couldn't send the text message"
+msgstr "De sms kon niet worden verstuurd"
+
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
+msgid "Message"
+msgstr "Bericht"
+
+msgid "Phone link is not installed"
+msgstr "Telefoon koppelen is niet geïnstalleerd"
+
+msgid "Install the kdeconnect package to connect your phone."
+msgstr "Installeer het pakket kdeconnect om je telefoon te koppelen."
+
+msgid "Your phones"
+msgstr "Je telefoons"
+
+msgid "Looking for phones…"
+msgstr "Telefoons zoeken…"
+
+msgid "No phone connected yet. Set one up below."
+msgstr "Nog geen telefoon gekoppeld. Stel er hieronder een in."
+
+msgid "Not nearby · connects when on the same network"
+msgstr "Niet in de buurt · verbindt op hetzelfde netwerk"
+
+msgid "Send files"
+msgstr "Bestanden sturen"
+
+msgid "Photos, documents, anything"
+msgstr "Foto's, documenten, van alles"
+
+msgid "Browse the phone"
+msgstr "De telefoon bekijken"
+
+msgid "Copy photos and files from the phone in Files"
+msgstr "Kopieer foto's en bestanden van de telefoon in Bestanden"
+
+msgid "Through the phone's own number"
+msgstr "Via het nummer van de telefoon zelf"
+
+msgid "Messages"
+msgstr "Berichten"
+
+msgid "Read and answer your conversations"
+msgstr "Lees en beantwoord je gesprekken"
+
+msgid "Find my phone"
+msgstr "Mijn telefoon zoeken"
+
+msgid "Make it ring, even when it is on silent"
+msgstr "Laat hem overgaan, ook als hij op stil staat"
+
+msgid "%1 is ringing"
+msgstr "%1 gaat over"
+
+msgid "Couldn't reach the phone"
+msgstr "De telefoon is niet bereikbaar"
+
+msgid "Disconnect this phone"
+msgstr "Deze telefoon ontkoppelen"
+
+msgid "%1 is disconnected"
+msgstr "%1 is ontkoppeld"
+
+msgid "Couldn't disconnect"
+msgstr "Ontkoppelen is mislukt"
+
+msgid "1. Install KDE Connect on your phone: from Google Play or F-Droid on Android, or from the App Store on iPhone.\n2. Connect the phone to the same Wi-Fi as this computer.\n3. Open KDE Connect on the phone; it appears below. Choose Connect and accept on the phone."
+msgstr "1. Installeer KDE Connect op je telefoon: via Google Play of F-Droid op Android, of via de App Store op iPhone.\n2. Verbind de telefoon met hetzelfde wifi-netwerk als deze computer.\n3. Open KDE Connect op de telefoon; hij verschijnt hieronder. Kies Verbinden en accepteer op de telefoon."
+
+msgid "Waiting for the phone…"
+msgstr "Wachten op de telefoon…"
+
+msgid "Nearby"
+msgstr "In de buurt"
+
+msgid "Accept on %1 to finish"
+msgstr "Accepteer op %1 om af te ronden"
+
+msgid "Couldn't connect"
+msgstr "Verbinden is mislukt"
+
+msgid "What works"
+msgstr "Wat er werkt"
+
+msgid "Notifications from your phone"
+msgstr "Meldingen van je telefoon"
+
+msgid "Appear here as normal notifications. Android only"
+msgstr "Verschijnen hier als gewone meldingen. Alleen Android"
+
+msgid "Shared clipboard"
+msgstr "Gedeeld klembord"
+
+msgid "Copy on one device, paste on the other"
+msgstr "Kopieer op het ene apparaat, plak op het andere"
+
+msgid "More options"
+msgstr "Meer opties"
+
+msgid "Choose per phone what it may do"
+msgstr "Kies per telefoon wat hij mag doen"
 
 msgid "Search settings"
 msgstr "Instellingen zoeken"

@@ -154,3 +154,24 @@ msgstr "Energiebesparing"
 
 msgid "Balanced"
 msgstr "Gebalanceerd"
+
+msgid "Previous month"
+msgstr "Vorige maand"
+
+msgid "Next month"
+msgstr "Volgende maand"
+
+msgid "Today"
+msgstr "Vandaag"
+
+msgid "All day"
+msgstr "Hele dag"
+
+msgid "Event"
+msgstr "Afspraak"
+
+msgid "Nothing planned"
+msgstr "Niets gepland"
+
+msgid "Open Calendar"
+msgstr "Agenda openen"
