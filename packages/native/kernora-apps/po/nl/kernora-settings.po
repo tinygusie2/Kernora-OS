@@ -1746,8 +1746,8 @@ msgstr "Kies een afbeelding of een eigen foto"
 msgid "Used to log in, unlock the screen and install software"
 msgstr "Gebruikt om in te loggen, het scherm te ontgrendelen en software te installeren"
 
-msgid "Unlock the screen and log in with a short number"
-msgstr "Ontgrendel het scherm en log in met een kort nummer"
+msgid "Unlock the screen with a short number"
+msgstr "Ontgrendel het scherm met een kort nummer"
 
 msgid "Not set · unlock with a short number instead of your password"
 msgstr "Niet ingesteld · ontgrendel met een kort nummer in plaats van je wachtwoord"
@@ -1785,26 +1785,26 @@ msgstr "Wachtwoord wijzigen"
 msgid "Use at least 8 characters. The system asks for your current password to confirm."
 msgstr "Gebruik minstens 8 tekens. Het systeem vraagt ter bevestiging om je huidige wachtwoord."
 
+msgid "The PIN could not be saved"
+msgstr "De pincode kon niet worden opgeslagen"
+
 msgid "Change your PIN"
 msgstr "Je pincode wijzigen"
 
 msgid "Set up a PIN"
 msgstr "Een pincode instellen"
 
-msgid "Use 4 to 12 digits. The PIN works on the lock screen and the login screen; installing software and changing system settings still ask for your password. After five wrong PINs in a row, only the password works for five minutes."
-msgstr "Gebruik 4 tot 12 cijfers. De pincode werkt op het vergrendelscherm en het inlogscherm; voor software installeren en systeeminstellingen wijzigen blijft je wachtwoord nodig. Na vijf verkeerde pincodes achter elkaar werkt vijf minuten lang alleen je wachtwoord."
+msgid "Use 6 to 12 digits. The PIN unlocks the lock screen. After a restart or when you log in, Lumo asks for your password first, and installing software or changing system settings always does. After five wrong PINs you have to wait longer and longer; after ten, the PIN is removed. Saving it asks for your password."
+msgstr "Gebruik 6 tot 12 cijfers. De pincode ontgrendelt het vergrendelscherm. Na een herstart of bij het inloggen vraagt Lumo eerst je wachtwoord, en voor software installeren of systeeminstellingen wijzigen altijd. Na vijf verkeerde pincodes moet je steeds langer wachten; na tien wordt de pincode verwijderd. Bij het opslaan wordt om je wachtwoord gevraagd."
 
 msgid "Your PIN is set"
 msgstr "Je pincode is ingesteld"
 
-msgid "The PIN could not be saved"
-msgstr "De pincode kon niet worden opgeslagen"
-
 msgid "New PIN"
 msgstr "Nieuwe pincode"
 
-msgid "4 to 12 digits"
-msgstr "4 tot 12 cijfers"
+msgid "6 to 12 digits"
+msgstr "6 tot 12 cijfers"
 
 msgid "Repeat the PIN"
 msgstr "Herhaal de pincode"
@@ -2785,3 +2785,12 @@ msgstr "Kies per telefoon wat hij mag doen"
 
 msgid "Search settings"
 msgstr "Instellingen zoeken"
+
+msgid "Unlock the screen and log in with a short number"
+msgstr "Ontgrendel het scherm en log in met een kort nummer"
+
+msgid "Use 4 to 12 digits. The PIN works on the lock screen and the login screen; installing software and changing system settings still ask for your password. After five wrong PINs in a row, only the password works for five minutes."
+msgstr "Gebruik 4 tot 12 cijfers. De pincode werkt op het vergrendelscherm en het inlogscherm; voor software installeren en systeeminstellingen wijzigen blijft je wachtwoord nodig. Na vijf verkeerde pincodes achter elkaar werkt vijf minuten lang alleen je wachtwoord."
+
+msgid "4 to 12 digits"
+msgstr "4 tot 12 cijfers"
