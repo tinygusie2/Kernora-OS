@@ -348,6 +348,7 @@ for directory in (
         entries[path.name] = path
 
 allowed = {'systemsettings.desktop', 'kdesystemsettings.desktop', 'org.kde.skanpage.desktop'}
+allowed |= {name for name in entries if name.startswith('org.kde.kdeconnect')}
 unexpected = []
 for name, path in sorted(entries.items()):
     parser = configparser.ConfigParser(interpolation=None, strict=False)

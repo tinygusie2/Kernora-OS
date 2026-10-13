@@ -7,7 +7,6 @@ kate
 kwrite
 konsole
 konqueror
-kdeconnect
 kde-spectacle
 kfind
 khelpcenter

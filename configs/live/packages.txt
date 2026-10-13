@@ -21,6 +21,7 @@ ipp-usb
 sane-airscan
 print-manager
 skanpage
+kdeconnect
 systemsettings
 sddm
 sudo
