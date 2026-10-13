@@ -24,6 +24,7 @@ Item {
     Loader { id: deviceLoader; source: "sources/DeviceSource.qml" }
     Loader { id: themeLoader; source: "sources/ThemeSource.qml" }
     Loader { id: powerLoader; source: "sources/PowerSource.qml" }
+    Loader { id: calendarLoader; source: "sources/CalendarSource.qml" }
 
     readonly property var network: networkLoader.item
     readonly property var bluetooth: bluetoothLoader.item
@@ -36,6 +37,8 @@ Item {
     readonly property var media: mediaLoader.item
     readonly property var theme: themeLoader.item
     readonly property var power: powerLoader.item
+    readonly property var calendar: calendarLoader.item
+    function openCalendar(): void { executable.connectSource("kernora-calendar"); }
 
     property date now: new Date()
     Timer {

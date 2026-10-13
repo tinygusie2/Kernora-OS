@@ -107,6 +107,13 @@ Item {
                     Layout.leftMargin: 8
                     spacing: 0
 
+                    TapHandler {
+                        onTapped: agenda.expanded = !agenda.expanded
+                    }
+                    HoverHandler {
+                        cursorShape: Qt.PointingHandCursor
+                    }
+
                     MText {
                         role: "headlineLarge"
                         text: root.backend.timeText
@@ -161,6 +168,14 @@ Item {
                     checkable: true
                     text: i18n("Power")
                 }
+            }
+
+            AgendaCard {
+                id: agenda
+                Layout.fillWidth: true
+                opacity: root.stage(0.2)
+                backend: root.backend
+                onRequestClose: root.requestClose()
             }
 
             Item {
