@@ -1,6 +1,6 @@
 # CS2: cursor escapes to a second monitor
 
-Reported configuration: Steam installed through Kernora Store, CS2 in
+Reported configuration: Steam installed through Lumo Store, CS2 in
 fullscreen, two monitors. Moving toward the other monitor and firing can
 click outside the game. The Steam source, GPU, game build and launch options
 are unknown; the diagnosis does not assume those details.

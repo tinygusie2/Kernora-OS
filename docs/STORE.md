@@ -15,7 +15,7 @@ a file or visiting a page.
 
 The Installed page includes apps installed outside Store when their
 metadata is available. Flatpak apps and runtimes update in Store; Debian
-and Kernora updates stay in Settings. A failed update check keeps the last
+and Lumo updates stay in Settings. A failed update check keeps the last
 known update list and displays a retry action instead of claiming success.
 
 Descriptions and screenshots come from the repositories. Star ratings
@@ -29,7 +29,7 @@ Build and check packages using `scripts/build-kernora-apps-binary` and
 `scripts/build-kernora-desktop-binary`. Their tests verify the Store module,
 launcher, runtime dependencies, remote definition and Russian translation.
 
-In a disposable Kernora desktop session with both catalogues downloaded:
+In a disposable Lumo desktop session with both catalogues downloaded:
 
 ```sh
 KERNORA_QML_STORE=/path/to/tests/store-smoke kernora-store
@@ -80,8 +80,8 @@ animation speed; the featured carousel pauses under the pointer and stops
 advancing when animations are disabled. Category cards and carousel selectors
 support keyboard activation.
 
-To preview the QML with an installed Kernora Store backend, close Store first
-and run in a Kernora desktop session:
+To preview the QML with an installed Lumo Store backend, close Store first
+and run in a Lumo desktop session:
 
 ```sh
 KERNORA_QML_STORE=/absolute/path/to/packages/native/kernora-apps/apps/store/qml kernora-store

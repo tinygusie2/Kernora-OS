@@ -1,6 +1,6 @@
 # Updates
 
-An installed Kernora system updates from four APT archives. The
+An installed Lumo system updates from four APT archives. The
 `kernora-archive` package sets them up, and `kernora-base` depends on it, so
 every installation has it.
 
@@ -9,11 +9,11 @@ every installation has it.
 | Debian security, `security.debian.org`, `trixie-security` | security fixes, kernel updates among them | automatically, once a day |
 | LibreWolf, `repo.librewolf.net` | the browser | automatically, once a day |
 | Debian, `deb.debian.org`, `trixie` and `trixie-updates` | Debian point releases | in Settings > Updates |
-| Kernora, `commywork9282-dotcom.github.io/kernora-updates` | Kernora's own packages | in Settings > Updates |
+| Lumo, `commywork9282-dotcom.github.io/kernora-updates` | Lumo's own packages | in Settings > Updates |
 
 The ISO is still built from the pinned Debian snapshot (`configs/upstream/base.env`).
 Only the installed system points at the live archives: `build-live-rootfs` removes
-the build's `sources.list` and its copy of the Kernora archive.
+the build's `sources.list` and its copy of the Lumo archive.
 
 Both the Debian archive and its security updates come with the `main` and
 `non-free-firmware` components. The image ships the firmware that graphics
@@ -33,8 +33,8 @@ the step is skipped and Settings > Updates catches up later.
 `unattended-upgrades` runs from APT's daily timers. `kernora-archive` enables it
 in `/etc/apt/apt.conf.d/21kernora-auto-upgrades` and chooses what it installs in
 `51kernora-unattended-upgrades`. Debian's own defaults match archives by the
-distribution's codename. On Kernora that codename is `ember`, so they would match
-nothing; the Kernora file names `trixie-security` instead.
+distribution's codename. On Lumo that codename is `ember`, so they would match
+nothing; the Lumo file names `trixie-security` instead.
 
 A kernel update takes effect after a restart. The live session never updates
 itself: the timers carry `ConditionKernelCommandLine=!boot=live`.
@@ -56,7 +56,7 @@ creates it), it asks once per boot for a restart, with a "Restart" button that
 opens the session's restart prompt.
 
 The events are in `kernora-updates.notifyrc`, so the notification server draws
-them like any other Kernora notification. What has been announced is kept in
+them like any other Lumo notification. What has been announced is kept in
 `~/.local/state/kernora-update-notifierstaterc`. The notifier exits at once in
 the live session.
 
@@ -76,12 +76,12 @@ installation, where Welcome itself is still due, it only records the newest
 release as seen. The window shows every release since the one seen last (up
 to three when none was seen yet) and then records the newest.
 
-## Kernora's packages win over Debian's
+## Lumo's packages win over Debian's
 
-`/etc/apt/preferences.d/kernora-archive.pref` gives the Kernora archive priority
-900. Debian therefore never replaces Kernora's builds of `base-files`, Calamares
+`/etc/apt/preferences.d/kernora-archive.pref` gives the Lumo archive priority
+900. Debian therefore never replaces Lumo's builds of `base-files`, Calamares
 or `polkit-kde-agent-1`, even when it releases a newer version of the same
-package. Such a version has to be rebuilt into the Kernora archive to reach
+package. Such a version has to be rebuilt into the Lumo archive to reach
 users.
 
 ## Publishing an update
@@ -93,7 +93,7 @@ users.
 3. If the ISO should carry the new version, update the pins in
    `configs/live/packages.txt` and the version checks in `tests/`.
 4. Run `make publish`. It builds every package and the local archive. It then
-   signs the archive with the Kernora archive key and force-pushes it to the
+   signs the archive with the Lumo archive key and force-pushes it to the
    `kernora-updates` repository, which GitHub Pages serves a minute later.
 
 Systems pick it up at their next check: the daily refresh, or Check in
@@ -104,7 +104,7 @@ all of its contents in a single commit, so the repository does not grow.
 
 ## The signing key
 
-The Kernora OS Archive Signing Key is an ed25519 key with fingerprint
+The Lumo Archive Signing Key is an ed25519 key with fingerprint
 `76EE FBDB 0D37 0DF1 0617 45C3 8AD5 1AE6 FA0E F01C`, created 2026-10-03. It
 expires on 2029-10-02.
 

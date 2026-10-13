@@ -1,7 +1,7 @@
 # Drivers
 
 AMD and Intel graphics work with the kernel's own drivers and the firmware the
-image ships. NVIDIA cards need NVIDIA's driver. Kernora installs it by itself,
+image ships. NVIDIA cards need NVIDIA's driver. Lumo installs it by itself,
 and only on computers that have an NVIDIA card.
 
 ## What gets installed

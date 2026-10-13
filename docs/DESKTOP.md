@@ -1,11 +1,11 @@
-# Desktop: the Kernora Material 3 shell
+# Desktop: the Lumo Material 3 shell
 
-`packages/native/kernora-desktop` turns Plasma into the Kernora desktop: a
+`packages/native/kernora-desktop` turns Plasma into the Lumo desktop: a
 complete Material 3 design, generated from one seed colour, and three pieces of
 shell built on it — a minimal floating panel, an application launcher and a
 quick settings shade pulled up from the panel.
 
-Plasma, KWin and the Qt applications stay unmodified Debian packages. Kernora
+Plasma, KWin and the Qt applications stay unmodified Debian packages. Lumo
 only adds themes, applets and defaults, so every upstream update keeps working.
 
 ## One seed, every asset
@@ -36,7 +36,7 @@ colour schemes, the Plasma theme, the icons' fallback ink and the shell at once.
 (CIECAM16 hue and chroma, CIE L\* tone). It reproduces the published baseline
 palette of `#6750A4` tone for tone. The scheme uses the "vibrant" hue rotations
 for secondary and tertiary; the neutral family keeps only a trace of the seed
-(chroma 4/8) so large surfaces stay calm over Kernora's cool wallpaper.
+(chroma 4/8) so large surfaces stay calm over Lumo's cool wallpaper.
 
 QML note: a property named `on<Uppercase>` is a signal handler in QML, so the
 Material "on" roles are spelled as content roles in `M3.qml` — `onPrimary` is
@@ -45,8 +45,8 @@ source test rejects `M3.on*`.
 
 ## Styles: Material Design 1, 2 and 3
 
-Kernora wears any of the three generations of Material, drawn from the same
-seed and the same typeface, so they read as Kernora in three eras rather
+Lumo wears any of the three generations of Material, drawn from the same
+seed and the same typeface, so they read as Lumo in three eras rather
 than three systems. Settings (Wallpaper & style → Style) and Welcome switch
 them at run time, for the whole session at once.
 
@@ -84,7 +84,7 @@ differences and easing curves.
   checkmark.
 * **Generated themes.** The colour schemes, the Plasma theme, Kvantum, GTK
   and the window frames are written once per generation, with
-  `KERNORA_GENERATION` naming it. Material 3 keeps the names Kernora always
+  `KERNORA_GENERATION` naming it. Material 3 keeps the names Lumo always
   used (`KernoraDark`, `kernora`, `Kernora`). The older generations add
   theirs: `KernoraMD2Dark`, `kernora-md2`, `KernoraMD2`, `kernora-md2-light`.
 * **Switching.** `org.kernora.system`'s `Appearance.apply(generation, dark)`
@@ -103,7 +103,7 @@ lock screen follows the user's style. So does the boot (GRUB, Plymouth).
 
 ## Colour themes
 
-Kernora comes in its own colour and in the Material colours: red, pink,
+Lumo comes in its own colour and in the Material colours: red, pink,
 purple, deep purple, indigo, blue, light blue, cyan, teal, green, light green,
 lime, yellow, amber, orange, deep orange, brown, grey and blue grey.
 `COLOURS` in `tools/kernora_design.py` lists them with their seeds and names;
@@ -116,10 +116,10 @@ the generation. Brown, grey and blue grey carry their own chroma (24, 0 and
   and generation. The colour adds its name to every theme: `KernoraBlueDark`,
   `KernoraBlueMD1Light`, Kvantum `KernoraBlue`, GTK `KernoraBlue`, window
   frames `kernora-blue-md1`, terminal colours in
-  `/usr/share/kernora/terminal/blue/`. Kernora's own colour keeps the old
+  `/usr/share/kernora/terminal/blue/`. Lumo's own colour keeps the old
   names. A colour's Plasma themes (`kernora-blue`, `kernora-blue-md1-light`)
   hold only `colors`, `metadata.json` and `plasmarc` and link `dialogs`,
-  `icons`, `solid` and `widgets` to the generation's Kernora theme: the
+  `icons`, `solid` and `widgets` to the generation's Lumo theme: the
   pictures are the same and Plasma recolours them from `colors`.
 * **App icons.** The ten app icons sit on a primary-container disc, so each
   colour has a hidden icon theme `Kernora-<colour>` with only those, which
@@ -130,7 +130,7 @@ the generation. Brown, grey and blue grey carry their own chroma (24, 0 and
 * **QML.** `gen-qml-tokens --palette` writes `/usr/share/kernora/palettes/
   <colour>.conf`: the colour's name in English and Russian, its swatch and
   every role of every generation in both modes (hex without `#`). `M3.qml`
-  keeps Kernora's palettes built in; for another colour it reads that file
+  keeps Lumo's palettes built in; for another colour it reads that file
   with a QtCore `Settings` object. It takes the colour from `kernorarc`
   (`[Style] colour=`) whenever the colour scheme changes, as it does the
   generation, and exposes it as `M3.colour`.
@@ -138,7 +138,7 @@ the generation. Brown, grey and blue grey carry their own chroma (24, 0 and
   `contents/ui/palettes/<colour>.qml`. Each scene loads the one named by
   `M3.colour` with a `Loader`, so the wallpaper changes colour with the
   theme. Shapes rotates its families around the seed; Tower, Rhythm, Starfall
-  and Pastel turn their palette by the seed's hue difference from Kernora's,
+  and Pastel turn their palette by the seed's hue difference from Lumo's,
   except families marked fixed (Starfall's night sky, Pastel's accents).
 * **Switching.** `Appearance.setColour(colour)` runs the same steps as a
   change of generation with the colour's themes, and then
@@ -159,7 +159,7 @@ has no network) and `fetch-symbols --check` verifies them during the build.
   colour-scheme stylesheet, so Plasma recolours it with the palette.
 * Aliases, including every `-symbolic` spelling, are symlinks.
 * Application icons are left alone: apps keep their own full-colour icons in
-  the launcher and the taskbar. Kernora's own applications are the exception:
+  the launcher and the taskbar. Lumo's own applications are the exception:
   `APP_ICONS` draws a themed icon for them — the filled symbol on a round
   tonal container, full colour, as a Pixel themes its app icons. System
   Settings (`preferences-system`, `systemsettings`) is drawn that way.
@@ -222,7 +222,7 @@ the notification popups.
 
 New accounts do not autostart the Xwayland video bridge (see
 `data/skel-autostart/`): its status icon is permanently passive and would bring
-the arrow back. Kernora's applications are native Wayland clients.
+the arrow back. Lumo's applications are native Wayland clients.
 
 ### Launcher (`org.kernora.launcher`)
 
@@ -265,18 +265,30 @@ gap and its content scrolls; a swipe on the handle strip still closes it.
 
 The sheet holds the clock and date, a battery chip on machines with a battery,
 System Settings and a power menu (lock, sleep, log out, restart, shut down),
-the brightness and volume sliders, and ten tiles: Wi-Fi, Bluetooth, Sound,
-Microphone, Do Not Disturb, Night Light, Airplane Mode, Keep Awake, Dark Theme
-and Screenshot. Tiles with more settings show a chevron; it (or a right-click)
+the brightness and volume sliders, and twelve tiles: Wi-Fi, Bluetooth, Sound,
+Microphone, Do Not Disturb, Night Light, Airplane Mode, Keep Awake, Dark Theme,
+Power Mode, Gaming Mode and Screenshot. Tiles with more settings show a chevron; it (or a right-click)
 opens the matching System Settings page. Dark Theme switches the whole system
 through `org.kernora.system`'s Appearance (kernora-apps), as Settings does;
 without kernora-apps the tile is unavailable. Screenshot closes the shade and
 then starts the Screenshot app, which captures the screen as it starts.
 
+Power Mode (`sources/PowerSource.qml`) steps through the profiles
+power-profiles-daemon offers: power saver, balanced and performance. Gaming
+Mode switches to performance and turns on Do Not Disturb and Keep Awake, then
+puts back the profile and turns off only what it turned on.
+
+Under the clock, `AgendaCard.qml` shows the first two events of the day from
+the Calendar app. Tapping the time or date opens a month view with a dot on
+every day with events; tapping a day lists its events, and Open Calendar starts
+the app. `sources/CalendarSource.qml` reads
+`~/.local/share/kernora/calendar/events.json` once a minute through the
+executable data engine and expands repeating events the way the app does.
+
 While something plays, Android's media card closes the sheet: the artwork
 behind a scrim, the app and the track, a play button that squares off while
 playing, and a seek bar that flows as a wave (`WavyProgress.qml`). Any MPRIS
-player drives it; Kernora's Media Player speaks MPRIS through
+player drives it; Lumo's Media Player speaks MPRIS through
 `org.kernora.system`'s `MprisPlayer`.
 
 The applet also announces removable storage: a USB drive or memory card
@@ -333,7 +345,7 @@ with Russian names and translations (`data/shell/po`):
 
 | Widget | What it shows |
 | --- | --- |
-| Kernora Clock (`clock`) | Hours over minutes in primary and tertiary, or an analog dial on a Material cookie (its settings) |
+| Lumo Clock (`clock`) | Hours over minutes in primary and tertiary, or an analog dial on a Material cookie (its settings) |
 | At a Glance (`glance`) | The date, the weather and the battery when it is charging or low, straight on the wallpaper |
 | Weather (`weather`) | Temperature and sky on a Material shape that changes with the sky |
 | Batteries (`battery`) | A ring for this computer and every connected device that reports a charge |
@@ -355,20 +367,20 @@ then drops them, which keeps it from ever collapsing into an icon.
 
 ### Widget picker and edit mode
 
-Kernora replaces Plasma's widget explorer
-(`data/explorer/WidgetExplorer.qml`, diverted): a search bar, a Kernora
+Lumo replaces Plasma's widget explorer
+(`data/explorer/WidgetExplorer.qml`, diverted): a search bar, a Lumo
 section of cards whose previews (`WidgetPreview.qml`) are drawn on Material
 shapes and tick when the widget is on the desktop (the tick removes them
 again), and the other widgets as a list. A tap adds a widget, dragging it
 (`WidgetDrag.qml`, MIME `text/x-plasmoidservicename`) drops it where it
-should go. On a panel the Kernora widgets give way to the panel applets.
-The Kernora cards come in a fixed order, the clock first. Plasma 6 hides
+should go. On a panel the Lumo widgets give way to the panel applets.
+The Lumo cards come in a fixed order, the clock first. Plasma 6 hides
 "Add or Manage Widgets…" from the desktop's right-click menu; the
 `kernora_add_widgets_menu` kconf_update script turns it back on
 (`[ActionPlugins][0][RightButton;NoModifier] add widgets=true` in
 `plasma-org.kde.plasma.desktop-appletsrc`).
 
-Edit mode (`data/editmode`) is Kernora's as well: `DesktopEditMode.qml`
+Edit mode (`data/editmode`) is Lumo's as well: `DesktopEditMode.qml`
 puts a floating toolbar (Widgets, Wallpaper, Add panel, Done) above the
 rounded desktop preview; `ConfigOverlay.qml` frames the selected widget in
 primary with Material resize handles and a side toolbar (settings, rotate,
@@ -379,19 +391,19 @@ the panel settings' previews (`PanelRepresentation.qml`) use the M3 roles.
 ## System surfaces
 
 Plasma loads some surfaces from places a look-and-feel package cannot
-reach. `kernora-desktop` puts Kernora's in place with `dpkg-divert`
+reach. `kernora-desktop` puts Lumo's in place with `dpkg-divert`
 (`debian/kernora-desktop.preinst`), and every diverted file is listed in
 the package and live-image tests.
 
 * **Lock screen** (`data/lockscreen`, over the shell package's
-  `lockscreen/LockScreen.qml`): Kernora Shapes behind a large clock, the
+  `lockscreen/LockScreen.qml`): Lumo Shapes behind a large clock, the
   account card, power actions, and the playing media's controls at the
   bottom, usable without unlocking.
 * **On-screen display** (`data/osd`, over `osd/Osd.qml`): volume and
   brightness as a thick slider, messages as a pill.
 * **Notifications** (`data/notifications`): Plasma's notification applet is
   a C++ plugin, so only its QML entry point (`main.qml`) is diverted. It
-  loads Kernora's popups, history and panel bell from `contents/ui/kernora/`
+  loads Lumo's popups, history and panel bell from `contents/ui/kernora/`
   and never imports the stock files next to it, whose popup manager would
   open a second set of popups. Popups follow Android's layout (app badge,
   "App · time", title, text, picture, tonal actions, file-job progress). The
@@ -402,7 +414,7 @@ the package and live-image tests.
   `ConfigurationContainmentActions.qml`, `ConfigurationShortcuts.qml` and
   `AboutPlugin.qml`): the window
   that right-click → Desktop and Wallpaper, or an applet's Configure, opens.
-  Sections are a navigation list as in Kernora Settings; the page sits on a
+  Sections are a navigation list as in Lumo Settings; the page sits on a
   rounded pane under its headline, with Material buttons at the foot. The
   folder view's Location, Icons and Filter pages (`data/folderview`, over
   `org.kde.desktopcontainment/contents/ui/Config*.qml`) keep their `cfg_*`
@@ -421,11 +433,11 @@ the package and live-image tests.
   `KernoraWindowThumbnail.qml`, Plasma's PipeWire thumbnail with
   `allowDmaBuf: false`: without a 3D GPU (llvmpipe, most virtual machines)
   the DMA-BUF stream arrives as coloured stripes.
-* **Alt+Space** opens the Kernora launcher. KRunner's kglobalaccel service
+* **Alt+Space** opens the Lumo launcher. KRunner's kglobalaccel service
   file is diverted so that its own window keeps Alt+F2.
 * **Authentication prompt**: `packages/derived/polkit-kde-agent-1` rebuilds
   Debian's agent with a Material 3 dialog. It is a frameless card that uses
-  only Kirigami and the colour scheme, so the agent depends on no Kernora
+  only Kirigami and the colour scheme, so the agent depends on no Lumo
   QML.
 * **Boot**: `tools/gen-plymouth-theme` writes the Plymouth theme: the mark
   and Material's loading indicator, its expressive shapes turning into one
@@ -435,16 +447,16 @@ the package and live-image tests.
   `/etc/default/grub.d/kernora.cfg` adds `splash` and the theme for an
   installed system; the ISO build copies the theme onto the medium.
   The medium's menu (`configs/live/grub.cfg`) looks for an installed
-  Kernora on the computer's disks (`/usr/share/kernora/settings/Main.qml`
+  Lumo on the computer's disks (`/usr/share/kernora/settings/Main.qml`
   next to `/boot/grub/grub.cfg`). When it finds one, its first and default
-  entry is "Kernora OS · Установленная система", which hands over to that
+  entry is "Lumo · Установленная система", which hands over to that
   system's own GRUB menu. A computer or VM that still boots from the medium
   after the installation therefore starts the installed system, not the live
   session.
 
 ## Live wallpaper (`org.kernora.shapes`)
 
-Kernora Shapes takes the character of the Pixel welcome animation: Material 3
+Lumo Shapes takes the character of the Pixel welcome animation: Material 3
 Expressive shapes — nine- and six-lobed cookies, a flower, suns, clovers, a
 pill — turning slowly, travelling on rounded orbits and passing over one
 another, while their colours shift between moods.
@@ -467,7 +479,7 @@ another, while their colours shift between moods.
 
 ### More live wallpapers
 
-Kernora ships only live wallpapers; Shapes is the default. The others are
+Lumo ships only live wallpapers; Shapes is the default. The others are
 Material shapes at play, in the same flat Material 3 tones -- toys, not
 landscapes. Each is a Plasma wallpaper package in `data/wallpaper/` with the
 same parts: a pure `Scene.qml` driven by `phase` (0..1) and `intro`, the
@@ -582,7 +594,7 @@ package is patched (sounds, below, are a fifth):
 * **GTK** — `gen-gtk-theme` writes the GTK 3 and GTK 4 themes `Kernora`,
   `KernoraMD1` and `KernoraMD2`, each a light `gtk.css` and a dark
   `gtk-dark.css`. They import Breeze GTK, whose colours Plasma's GTK settings
-  service already sets from the Kernora colour scheme
+  service already sets from the Lumo colour scheme
   (`~/.config/gtk-3.0/colors.css`). On top of it they give buttons (tonal pills,
   the default one filled with primary), fields, check boxes, radio buttons,
   switches, sliders, progress bars, menus, popovers and tooltips the
@@ -694,7 +706,7 @@ The preview keeps the screen from dimming between screenshots. Screen coordinate
 
 ## Shortcuts
 
-Kernora keeps Plasma's shortcuts and adds the ones people know from Windows.
+Lumo keeps Plasma's shortcuts and adds the ones people know from Windows.
 App shortcuts come from `X-KDE-Shortcuts` in the desktop entries, linked into
 `/usr/share/kglobalaccel`; the window and panel ones are written for new
 accounts by `/etc/skel/.config/kglobalshortcutsrc` and the panel layout.

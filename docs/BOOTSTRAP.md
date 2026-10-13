@@ -38,7 +38,7 @@ package, not an ISO customization overlay. Build it with:
 make base-files-source
 ```
 
-The target validates both the repository and the Kernora identity before
+The target validates both the repository and the Lumo identity before
 running `dpkg-source`. It produces:
 
 ```text
@@ -93,7 +93,7 @@ This target performs the following operations:
    `20260901T000000Z`;
 5. builds the binary in rootless namespaces with
    `dpkg-buildpackage --build=binary --no-sign`;
-6. tests the metadata and installed Kernora identity in the resulting package.
+6. tests the metadata and installed Lumo identity in the resulting package.
 
 The clean environment is cached at:
 
@@ -131,7 +131,7 @@ source and binary packages, generates `Packages`, `Sources`, `Release`,
 `Release.gpg` and `InRelease`, and installs the completed archive at
 `out/archive/`. The archive test verifies signatures and Release hashes, then
 uses an isolated project-local APT state to confirm that APT selects the exact
-Kernora versions and dependency.
+Lumo versions and dependency.
 
 The development key is local build state under `_state/gnupg` and `_state/keys`.
 It expires after one year, uses `archive@kernora.invalid`, and is explicitly not
@@ -149,10 +149,10 @@ make minimal-rootfs
 
 This target depends on `make local-archive`, then runs rootless `mmdebstrap` in
 `minbase` mode. `configs/rootfs/minimal-packages.txt` currently requests the
-versioned package `kernora-base=1.1`; its dependency pulls in the exact Kernora
+versioned package `kernora-base=1.1`; its dependency pulls in the exact Lumo
 `base-files` build.
 
-Before packaging, a rootless chroot test checks the Kernora OS identity, dpkg
+Before packaging, a rootless chroot test checks the Lumo identity, dpkg
 vendor, installed package versions, APT key scoping and readability of the
 embedded signed archive. The output is:
 
@@ -181,7 +181,7 @@ The installed `/etc/apt/sources.list` contains four declared sources:
 4. `trixie-security` from the matching Debian security snapshot.
 
 Keeping the development archive inside the rootfs makes its packages and signed
-metadata inspectable without a public Kernora server, while the Debian sources
+metadata inspectable without a public Lumo server, while the Debian sources
 remain immutable timestamped upstream references.
 
 All files below `_build`, `_cache`, `_state`, and `out` are generated state and

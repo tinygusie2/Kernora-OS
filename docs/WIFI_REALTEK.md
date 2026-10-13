@@ -4,7 +4,7 @@
 
 After the 1.3 update, the reporter described packet loss and lag spikes in
 CS2. This is a network-latency report, not a confirmed rendering freeze.
-There is no hardware trace establishing that the Kernora power-saving change
+There is no hardware trace establishing that the Lumo power-saving change
 caused it. Version 1.4 withdraws that unvalidated automatic default to allow
 comparison with the previous Wi-Fi behavior, without adding further driver
 parameters. The original disconnect report remains unresolved.
@@ -46,7 +46,7 @@ graphics settings or kernel packages. Other Debian or Flatpak updates that
 the reporter may have installed at the same time are unknown.
 
 The 1.4/1.1.34 source checks, binary checks, `make verify` and local signed
-archive checks passed. In a disposable Kernora guest with NetworkManager
+archive checks passed. In a disposable Lumo guest with NetworkManager
 1.52.1, the 1.3 policy was installed and parsed before upgrading to 1.4.
 The upgrade removed the vendor file and its effective configuration section,
 while keeping the inactive example. A second upgrade preserved a byte-exact
@@ -151,7 +151,7 @@ sudo nmcli general reload conf
 ```
 
 Reconnect or reboot. NetworkManager then ignores the vendor policy. Remove
-that empty override and reload/reconnect to restore the Kernora default.
+that empty override and reload/reconnect to restore the Lumo default.
 
 ## References
 
@@ -163,7 +163,7 @@ that empty override and reload/reconnect to restore the Kernora default.
 ## Package validation, 12 October 2026
 
 `make verify`, native source checks and both binary package checks passed.
-In a disposable Kernora QEMU guest running Linux `6.12.107+deb13-amd64` and
+In a disposable Lumo QEMU guest running Linux `6.12.107+deb13-amd64` and
 NetworkManager `1.52.1`, upgrading `kernora-base` from 1.2 to 1.3 succeeded.
 NetworkManager parsed the installed vendor policy, an empty administrator
 file masked it, and an explicit administrator policy overrode it. Saved

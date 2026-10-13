@@ -25,16 +25,16 @@ the build pipeline in this repository.
 The first derived package is the complete Debian `base-files` source tree in
 `packages/derived/base-files`, currently versioned
 `13.8+deb13u6+kernora1`. It is built with Debian package tooling; it is not
-extracted from, or layered onto, an installer ISO. The fork changes the Kernora
+extracted from, or layered onto, an installer ISO. The fork changes the Lumo
 OS identity and vendor origin while retaining Debian parent and original
 maintainer provenance.
 
 The corresponding immutable upstream source is fetched from Debian snapshot
 `20260901T000000Z`, authenticated, checksummed in `manifests/upstream.lock`, and
 kept outside Git. `manifests/derived-packages.txt` records the mapping between
-the Debian and Kernora versions.
+the Debian and Lumo versions.
 
-Two more packages are Debian's own sources rebuilt with Kernora patches, which
+Two more packages are Debian's own sources rebuilt with Lumo patches, which
 `packages/derived/<name>` holds as a quilt series and a changelog entry:
 
 * `calamares` (`3.3.14-1kernora1`): the installer's partition page in
@@ -53,22 +53,22 @@ in `configs/live/packages.txt`.
 
 `packages/native/kernora-base` is a native Debian `3.0 (native)` package,
 version `1.4` and architecture `all`. It has an exact dependency on
-`base-files (= 13.8+deb13u6+kernora1)`, making the Kernora identity package an
+`base-files (= 13.8+deb13u6+kernora1)`, making the Lumo identity package an
 explicit part of the distribution base. Its source-to-binary path is exercised
 by `make kernora-base-source` and `make kernora-base-binary`. It also supplies
 optional hardware workarounds; see [the RTL8852CE workaround](WIFI_REALTEK.md).
 
 ## Desktop package
 
-`packages/native/kernora-desktop` (version `1.4`) carries the Kernora desktop:
+`packages/native/kernora-desktop` (version `1.4`) carries the Lumo desktop:
 the Material 3 design system, generated at build time from one seed colour,
-the Kernora Plasma and icon themes, and the launcher and quick settings applets
+the Lumo Plasma and icon themes, and the launcher and quick settings applets
 of the panel. It is data and QML only (`Architecture: all`); its generators
 need nothing but Python in the build chroot. See [DESKTOP.md](DESKTOP.md).
 
 ## Applications package
 
-`packages/native/kernora-apps` (version `1.0`, `amd64`) carries Kernora's own
+`packages/native/kernora-apps` (version `1.0`, `amd64`) carries Lumo's own
 applications -- Settings, Files, Text Editor, Photos, Media Player,
 Calculator, Screenshot and Welcome -- and `org.kernora.system`, the C++ Qt
 Quick module they use to read and change the system. It is built with CMake
@@ -115,7 +115,7 @@ state and trust stores prevent the host `/etc/apt` configuration from becoming
 an implicit build input.
 
 The binary test inspects the resulting package, its relative `/etc/os-release`
-link, Kernora identity, vendor ancestry, version, and the vendor-symlink
+link, Lumo identity, vendor ancestry, version, and the vendor-symlink
 migration performed by `postinst`.
 
 ## Signed development archive
@@ -128,14 +128,14 @@ versions, package dependency and package selection.
 The signing identity is intentionally a local development key. It is generated
 under ignored `_state` directories, has a one-year expiry and an
 `archive@kernora.invalid` UID, and is exported into the archive so the local
-proof can be consumed. It is not the Kernora production release key and must
+proof can be consumed. It is not the Lumo production release key and must
 not be promoted as one.
 
 ## Minimal rootfs
 
 `make minimal-rootfs` uses `mmdebstrap --variant=minbase` in rootless `unshare`
 mode. The explicit package manifest installs `kernora-base=1.1`, whose exact
-dependency selects the Kernora `base-files` fork. The resulting filesystem is
+dependency selects the Lumo `base-files` fork. The resulting filesystem is
 tested inside a rootless chroot for OS identity, dpkg vendor, package versions,
 APT trust scoping and access to the embedded development archive.
 

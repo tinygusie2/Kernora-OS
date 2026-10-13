@@ -1,6 +1,6 @@
-# Apps: the Kernora applications and installer
+# Apps: the Lumo applications and installer
 
-Kernora OS keeps KDE Plasma as its desktop technology and replaces what the
+Lumo keeps KDE Plasma as its desktop technology and replaces what the
 user sees of KDE with its own applications. They share the Material 3 design
 of the shell: the same tokens, components, symbols and motion.
 
@@ -11,13 +11,13 @@ of the shell: the same tokens, components, symbols and motion.
 | `kernora-desktop` | The QML modules `org.kernora.m3` (tokens, text, icons, sliders, state layers) and `org.kernora.ui` (pages, list rows, groups, dialogs, fields, navigation), the Terminal entry and colours, light variants of the Plasma theme and window frames, app icons. |
 | `kernora-apps` | The applications and `org.kernora.system`, the C++ Qt Quick module through which they read and change the system, plus `kernora-update-notifier` (see [UPDATES.md](UPDATES.md#notifications)). |
 | `kernora-calamares` | The installer: Calamares configuration, the Material 3 branding and the `kernora-installer` launcher. Removed from the installed system. |
-| `calamares` (derived) | Debian's Calamares rebuilt with the Kernora partition page patch (`packages/derived/calamares`). |
+| `calamares` (derived) | Debian's Calamares rebuilt with the Lumo partition page patch (`packages/derived/calamares`). |
 
 ## Applications
 
 | Application | Replaces | Notes |
 | --- | --- | --- |
-| Settings (`kernora-settings`) | System Settings | Categories with search; every page changes the real setting (NetworkManager, BlueZ, PipeWire, KScreen, KWin, PowerDevil, AccountsService, timedated, PackageKit…). `/usr/bin/systemsettings` is diverted to it, so `systemsettings kcm_…` from Plasma opens the matching page; modules without a Kernora page open in their own window. |
+| Settings (`kernora-settings`) | System Settings | Categories with search; every page changes the real setting (NetworkManager, BlueZ, PipeWire, KScreen, KWin, PowerDevil, AccountsService, timedated, PackageKit…). `/usr/bin/systemsettings` is diverted to it, so `systemsettings kcm_…` from Plasma opens the matching page; modules without a Lumo page open in their own window. |
 | Files (`kernora-files`) | Dolphin | Places and drives (mount, eject), grid and list, copy/move/rename through KIO, the freedesktop trash with restore, ZIP and archive extraction (bsdtar). |
 | Text Editor (`kernora-editor`) | Kate, KWrite | KSyntaxHighlighting, find and replace, line numbers, unsaved-change guard. |
 | Photos (`kernora-photos`) | Gwenview | Gallery of Pictures, viewer with zoom, rotation, slideshow, details, wallpaper. |
@@ -26,6 +26,7 @@ of the shell: the same tokens, components, symbols and motion.
 | Screenshot (`kernora-screenshot`) | Spectacle | KWin ScreenShot2 (the desktop entry must name `/usr/bin/kernora-screenshot`), area/screen/window, saved and copied. Bound to Print. |
 | Task Manager (`kernora-tasks`) | System Monitor | Processes with their processor and memory use, End task and Force (SIGTERM, SIGKILL, own processes only); processor, memory, graphics (`gpu_busy_percent`), disk and network over the last 90 seconds; startup apps. Reads `/proc` and `/sys` through `Tasks` in `org.kernora.system`. Ctrl+Shift+Esc opens it. |
 | Terminal | Konsole | Alacritty started as `org.kernora.terminal`, with colours generated from the tokens and switched with the theme. Ctrl+Alt+T opens it (the entry is linked into `/usr/share/kglobalaccel`). |
+| Calendar (`kernora-calendar`) | — | Day, week and month views; events with a time or all day, repeating daily, weekly, monthly or yearly, with a reminder, location and notes; `.ics` import (also by opening the file) and export to Documents. Events are kept in `~/.local/share/kernora/calendar/events.json`. `kernora-calendar reminders` starts hidden at login and sends the reminders (`kernora-calendar.notifyrc`); opening the app shows that instance, and closing the window hides it again. |
 | Welcome (`kernora-welcome`) | Plasma Welcome | Runs at the first logins of an installed system (`--first-run`, closes in the live session) until finished. |
 | File chooser (`kernora-filechooser`) | KDE's file dialog | Every program's open, save and folder dialogs; see below. |
 
@@ -36,7 +37,7 @@ claims those types too. It is not a Debian package: `scripts/fetch-librewolf`
 downloads the version pinned in `configs/upstream/librewolf.env` after
 checking the repository's InRelease against the key pinned in
 `keys/librewolf-fingerprint.txt`, and the installed system takes updates from
-`/etc/apt/sources.list.d/librewolf.sources`. The Kernora theme
+`/etc/apt/sources.list.d/librewolf.sources`. The Lumo theme
 (`tools/gen-browser-theme`) is a distribution add-on that LibreWolf installs
 into new profiles. `kernora.js` in `/usr/share/librewolf/browser/defaults/preferences`
 makes it the default and allows it unsigned: that directory is read after the
@@ -65,7 +66,7 @@ the modules it carries, behind the diverted command.
 
 ## Advanced settings
 
-The "advanced" rows in Settings open Kernora pages, not KDE's modules:
+The "advanced" rows in Settings open Lumo pages, not KDE's modules:
 
 | Row | Page | What it changes |
 | --- | --- | --- |
@@ -80,13 +81,13 @@ The "advanced" rows in Settings open Kernora pages, not KDE's modules:
 | Wallpaper & style > Fonts | `FontsPage` | The interface typeface and size and the typeface and size for code and terminals, with a preview (kdeglobals `font`, `menuFont`, `toolBarFont`, `smallestReadableFont`, `fixed` and the title bar font). |
 | Accessibility > More accessibility options | `AccessibilityMorePage` | Sticky keys options, slow and bounce key delays, turning features on from the keyboard, Caps Lock and Num Lock sounds, mouse keys and their speed, the system bell (`kaccessrc`) and shaking the pointer to find it (KWin's `shakecursor`). |
 
-KWin 6.3 has no mirroring of its own: like KDE's module, Kernora puts the
+KWin 6.3 has no mirroring of its own: like KDE's module, Lumo puts the
 mirror at the same position as its source, and finds mirrors that way.
 
 File types and the network connection editor still open KDE's modules.
 
 Files copies and moves without KIO's own dialogs: it looks for name
-conflicts first (`Files.conflicts`) and asks in a Kernora dialog whether to
+conflicts first (`Files.conflicts`) and asks in a Lumo dialog whether to
 replace, keep both or skip, then runs the job without a UI delegate
 (`Files.transfer`). Pasting into the same folder makes a numbered copy.
 
@@ -105,7 +106,7 @@ built from Files' places, path bar and tiles.
 * Programs: `/etc/xdg/plasma-workspace/env/kernora-file-dialogs.sh` sets
   `PLASMA_INTEGRATION_USE_PORTAL=1`, so Qt programs, Plasma included,
   stop showing KFileWidget, and `GTK_USE_PORTAL=1` does the same for GTK 3.
-  LibreWolf's Kernora defaults set `widget.use-xdg-desktop-portal.file-picker`.
+  LibreWolf's Lumo defaults set `widget.use-xdg-desktop-portal.file-picker`.
 * Requests: the backend supports opening one file or several, choosing a
   folder, saving, and saving several files into a folder. It applies the
   program's filters (MIME types turn into globs), suggests a name and asks
@@ -135,7 +136,7 @@ follow through the palette.
 
 `kernora-installer` starts Calamares through pkexec (`org.kernora.installer`;
 the live account needs no password) on Xwayland — its QML pages get no
-keyboard focus under native Wayland — with the Kernora widget and Qt Quick
+keyboard focus under native Wayland — with the Lumo widget and Qt Quick
 styles and the session's language. The branding draws the step list and the
 buttons in QML and replaces the welcome, location, keyboard, users, summary
 and final pages (`welcomeq.qml`, `localeq.qml`, `keyboardq.qml`,
@@ -159,10 +160,10 @@ zone and partition lines, installation steps, password checks).
 compiles it with `tools/gen-qm` into the branding's `lang/`, which Calamares
 consults after its own translations.
 
-The partition page is the one Calamares draws with widgets only. Kernora
+The partition page is the one Calamares draws with widgets only. Lumo
 builds Calamares from Debian's source with a patch
 (`packages/derived/calamares`, `make calamares-binary`): flat Material 3 disk
-bars and a readable legend in the Kernora palette (also in the size bar of
+bars and a readable legend in the Lumo palette (also in the size bar of
 the partition dialogs), option rows that the branding's `stylesheet.qss`
 draws as cards (generated by `tools/gen-installer-style` from the tokens),
 and icons taken from the branding's `images/` (generated by
@@ -212,3 +213,67 @@ The bluedevil KDED module is turned off in `/etc/xdg/kded6rc`
 (kernora-desktop), so its agent does not take the requests. Settings >
 Bluetooth > Pair a new device starts the pairing; when it fails, the row says
 why (wrong code, cancelled, no answer, out of reach).
+
+## Coming from Windows
+
+### Windows programs and games
+
+Wine is installed, and `org.kernora.wine.desktop` (kernora-desktop; Debian's
+`wine` has no desktop entry) runs `wine start /unix` on `.exe`, `.msi` and
+`.lnk` files, the default for those types in `/etc/xdg/mimeapps.list`.
+GameMode (`gamemoderun`) and MangoHud are installed for games; Steam with
+Proton, Bottles, Lutris and Heroic come from Flathub through the Store.
+
+### Bring files from Windows
+
+Settings > System > Bring files from Windows (`MigratePage.qml`, also
+`kernora-settings migrate` and a link in Welcome) lists NTFS, exFAT and FAT
+partitions with `lsblk`, opens closed ones read-only with
+`udisksctl mount -o ro`, and offers every `Users/<name>` with a Documents or
+Desktop folder, and drives that hold such folders themselves. A folder can be
+chosen too. It copies Documents, Pictures, Music, Videos, Desktop and
+Downloads into the matching folders with `cp -rn`, so nothing is overwritten;
+sets `AppData/Roaming/Microsoft/Windows/Themes/TranscodedWallpaper` as the
+wallpaper; and turns the Bookmarks files of Edge, Chrome and Brave into HTML
+files in Documents that LibreWolf imports. A drive Windows left hibernated
+(Fast Startup) cannot be opened; the page says so.
+
+### Printers & scanners
+
+`PrintersPage.qml` lists the queues CUPS knows (`lpstat -p -d`), makes one the
+default with `lpoptions -d` and prints a test page with `lp`. Add a printer,
+the queue and advanced options open KDE's print manager (`kde-add-printer`,
+`kcm_printer_manager`). CUPS, ipp-usb and sane-airscan make network and USB
+printers and scanners work without drivers; Scan a document opens Skanpage.
+
+### Phone
+
+`PhonePage.qml` drives KDE Connect through `kdeconnect-cli`: it lists phones,
+pairs a nearby one, sends files (`--share`), opens the phone in Files
+(`kdeconnect://<id>/`), sends a text message (`--send-sms`), opens KDE
+Connect's Messages, rings the phone and unpairs it. KDE Connect itself shares
+notifications (Android) and the clipboard; More options opens
+`kcm_kdeconnect`. KDE Connect is no longer in the excluded packages.
+
+### PIN
+
+Settings > Account > PIN sets a PIN of 6 to 12 digits for the lock screen.
+`kernora-pin` (kernora-apps, setuid root, `src/pin/pin.c`) keeps a yescrypt
+hash in `/var/lib/kernora/pin/<uid>` and the wrong tries in
+`/var/lib/kernora/pin/<uid>.state`, root only, in a 0711 directory so that
+Settings can see whether a PIN is set:
+
+- `kernora-pin set` and `remove` run through pkexec
+  (`org.kernora.pin.manage`, `auth_self`) and act on `PKEXEC_UID`, so setting
+  a PIN takes the user's password;
+- `kernora-pin check` runs from `pam_exec` with `expose_authtok`, placed before
+  `pam_unix` by the pam-auth-update profile `kernora-pin`. It accepts only the
+  `kde` and `kde-fingerprint` services (the lock screen) and only the caller's
+  own account. A PIN that matches signs in; anything else falls through to the
+  password with `try_first_pass`. SDDM, sudo and polkit never take the PIN, so
+  after a restart the password comes first;
+- after 5 wrong PINs in a row the PIN is refused for a minute, after 7 for
+  five minutes, after 9 for half an hour, and the tenth removes it. A right PIN
+  clears the count.
+
+The lock screen's field reads Password or PIN.
