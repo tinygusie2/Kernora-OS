@@ -422,6 +422,12 @@ msgstr "Wachtwoord"
 msgid "change password login"
 msgstr "wachtwoord wijzigen inloggen"
 
+msgid "PIN"
+msgstr "Pincode"
+
+msgid "pin code number unlock lock screen login windows hello"
+msgstr "pincode pin nummer ontgrendelen vergrendelscherm inloggen windows hello"
+
 msgid "Account picture"
 msgstr "Accountfoto"
 
@@ -1740,6 +1746,12 @@ msgstr "Kies een afbeelding of een eigen foto"
 msgid "Used to log in, unlock the screen and install software"
 msgstr "Gebruikt om in te loggen, het scherm te ontgrendelen en software te installeren"
 
+msgid "Unlock the screen and log in with a short number"
+msgstr "Ontgrendel het scherm en log in met een kort nummer"
+
+msgid "Not set · unlock with a short number instead of your password"
+msgstr "Niet ingesteld · ontgrendel met een kort nummer in plaats van je wachtwoord"
+
 msgid "Other accounts"
 msgstr "Andere accounts"
 
@@ -1772,6 +1784,39 @@ msgstr "Wachtwoord wijzigen"
 
 msgid "Use at least 8 characters. The system asks for your current password to confirm."
 msgstr "Gebruik minstens 8 tekens. Het systeem vraagt ter bevestiging om je huidige wachtwoord."
+
+msgid "Change your PIN"
+msgstr "Je pincode wijzigen"
+
+msgid "Set up a PIN"
+msgstr "Een pincode instellen"
+
+msgid "Use 4 to 12 digits. The PIN works on the lock screen and the login screen; installing software and changing system settings still ask for your password. After five wrong PINs in a row, only the password works for five minutes."
+msgstr "Gebruik 4 tot 12 cijfers. De pincode werkt op het vergrendelscherm en het inlogscherm; voor software installeren en systeeminstellingen wijzigen blijft je wachtwoord nodig. Na vijf verkeerde pincodes achter elkaar werkt vijf minuten lang alleen je wachtwoord."
+
+msgid "Your PIN is set"
+msgstr "Je pincode is ingesteld"
+
+msgid "The PIN could not be saved"
+msgstr "De pincode kon niet worden opgeslagen"
+
+msgid "New PIN"
+msgstr "Nieuwe pincode"
+
+msgid "4 to 12 digits"
+msgstr "4 tot 12 cijfers"
+
+msgid "Repeat the PIN"
+msgstr "Herhaal de pincode"
+
+msgid "The PINs are different"
+msgstr "De pincodes zijn verschillend"
+
+msgid "Remove the PIN"
+msgstr "De pincode verwijderen"
+
+msgid "The PIN is removed"
+msgstr "De pincode is verwijderd"
 
 msgid "Every option of the system, including the rarely used ones."
 msgstr "Elke optie van het systeem, ook de zelden gebruikte."
