@@ -34,7 +34,7 @@ SettingsPage {
             loaded = true;
             return;
         }
-        Process.run(tool, ["-l"], (code, output) => {
+        Process.run("env", ["LANGUAGE=C", "LC_ALL=C", tool, "-l"], (code, output) => {
             const found = [];
             for (const line of output.split("\n")) {
                 const m = line.match(/^- (.+): (\S+) \((.+)\)\s*$/);
