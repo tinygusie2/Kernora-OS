@@ -16,7 +16,7 @@ done
 # shellcheck disable=SC1091
 source "$project_root/configs/project.env"
 
-[[ "$(dpkg-parsechangelog -l"$package_root/debian/changelog" -S Version)" == "1.1" ]] \
+[[ "$(dpkg-parsechangelog -l"$package_root/debian/changelog" -S Version)" == "1.2" ]] \
   || fail "unexpected source version"
 [[ "$(dpkg-parsechangelog -l"$package_root/debian/changelog" -S Distribution)" == "UNRELEASED" ]] \
   || fail "development package must remain UNRELEASED"
@@ -48,6 +48,7 @@ if grep -rq 'snapshot.debian.org' "$apt"; then
 fi
 grep -Fxq 'Signed-By: /usr/share/keyrings/kernora-archive-keyring.asc' "$apt/kernora.sources" \
   || fail "the Kernora archive is not signed by its key"
+grep -Fxq "Enabled: no" "$apt/kernora.sources" || fail "Lumo still takes Kernora OS packages"
 kernora_uri=$(awk '/^URIs:/ { print $2 }' "$apt/kernora.sources")
 [[ "$kernora_uri" == "$DIST_UPDATES_URL" ]] || fail "kernora.sources does not point at $DIST_UPDATES_URL"
 kernora_host=${kernora_uri#https://}
