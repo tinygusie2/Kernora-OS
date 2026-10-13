@@ -24,7 +24,7 @@ of the shell: the same tokens, components, symbols and motion.
 | Media Player (`kernora-player`) | Elisa, Dragon | Qt Multimedia over FFmpeg; video with auto-hiding controls, music with a queue from the folder. |
 | Calculator (`kernora-calculator`) | KCalc | Own expression parser (no `eval`), scientific functions, history. |
 | Screenshot (`kernora-screenshot`) | Spectacle | KWin ScreenShot2 (the desktop entry must name `/usr/bin/kernora-screenshot`), area/screen/window, saved and copied. Bound to Print. |
-| Task Manager (`kernora-tasks`) | System Monitor | Processes with their processor and memory use, End task and Force (SIGTERM, SIGKILL, own processes only); processor, memory, graphics (`gpu_busy_percent`), disk and network over the last 90 seconds; startup apps. Reads `/proc` and `/sys` through `Tasks` in `org.kernora.system`. Ctrl+Shift+Esc opens it. |
+| Task Manager (`kernora-tasks`) | System Monitor | Laid out like Windows Task Manager, see below. Reads `/proc` and `/sys` through `Tasks` in `org.kernora.system`. Ctrl+Shift+Esc opens it. |
 | Terminal | Konsole | Alacritty started as `org.kernora.terminal`, with colours generated from the tokens and switched with the theme. Ctrl+Alt+T opens it (the entry is linked into `/usr/share/kglobalaccel`). |
 | Calendar (`kernora-calendar`) | — | Day, week and month views; events with a time or all day, repeating daily, weekly, monthly or yearly, with a reminder, location and notes; `.ics` import (also by opening the file) and export to Documents. Events are kept in `~/.local/share/kernora/calendar/events.json`. `kernora-calendar reminders` starts hidden at login and sends the reminders (`kernora-calendar.notifyrc`); opening the app shows that instance, and closing the window hides it again. |
 | Welcome (`kernora-welcome`) | Plasma Welcome | Runs at the first logins of an installed system (`--first-run`, closes in the live session) until finished. |
@@ -63,6 +63,49 @@ The KDE applications in the
 "Replaces" column are pinned out of the image
 (`configs/live/excluded-packages.txt`); System Settings stays installed for
 the modules it carries, behind the diverted command.
+
+### Task Manager
+
+Task Manager follows Windows Task Manager, with five pages in a side bar:
+
+- **Processes** groups processes the way Windows does. *Apps* are the
+  programs you started: a process belongs to an app when its systemd unit is
+  an `app-<desktop id>-….scope` or `app-<desktop id>@….service` (how Plasma
+  starts programs), and the app's name and icon come from its desktop entry.
+  Everything else of yours is a *background process* (apps started at login,
+  `@autostart`, are counted here, as Windows does with tray apps); processes
+  of other users and of the system are *system processes*. An app with more
+  than one process expands to show them. Columns: status, CPU, memory (the
+  private part, `RssAnon`), disk (`/proc/<pid>/io`, only readable for your own
+  processes) with the totals above them and a colour that deepens with use.
+  Click a column to sort, click it again to reverse.
+- **Performance** has a tile with a small graph per CPU, memory, disk, network
+  adapter and graphics card. CPU shows speed, processes, threads, up time,
+  cores, sockets, logical processors (with a graph each), virtualisation and
+  L3 cache; memory shows in use, available, committed, cached and swap; disks
+  show active time and read and write speed; network adapters show send and
+  receive, the IP addresses and link speed; graphics shows how busy the card
+  is and its memory where the driver reports it (`amdgpu`).
+- **Startup apps** turns login items on and off (unchanged).
+- **Details** lists every process with PID, status, user, CPU, memory,
+  threads and priority.
+- **Services** lists the system's and your systemd services
+  (`systemctl list-units --output=json`) and starts, stops and restarts them;
+  system services ask for the administrator password through polkit.
+
+The context menu (right-click or long press) and the buttons above the list
+offer *End task* (SIGTERM to every process of the row), *Force end* (SIGKILL),
+*Efficiency mode* (nice 19 on every thread; turning it off sets nice 0),
+*Go to details*, *Open file location*, *Search online* and *Properties*.
+Ending another user's process or lowering a nice value runs `pkexec kill` or
+`pkexec renice`, so it asks for the administrator password. *Run new task*
+starts a program, opens a folder or an internet address. *Update speed* is
+High (0.5 s), Normal (1 s), Low (4 s) or Paused and is kept in
+`kernora-tasksrc`, as is the last page. Graphs show the last 60 samples.
+
+Shortcuts: Delete ends the selected task, Shift+Delete forces it, Ctrl+F
+searches by name or PID, Ctrl+N runs a new task, F5 refreshes, Ctrl+1 to
+Ctrl+5 switch pages.
 
 ## Advanced settings
 
