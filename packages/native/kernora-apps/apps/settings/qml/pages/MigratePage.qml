@@ -132,7 +132,7 @@ SettingsPage {
         return Files.exists(Qt.url("file://" + path));
     }
 
-    function escape(text: string): string {
+    function htmlEscape(text: string): string {
         return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
     }
 
@@ -142,9 +142,9 @@ SettingsPage {
         const add = (node, depth) => {
             const pad = "    ".repeat(depth);
             if (node.type === "url") {
-                lines.push(pad + '<DT><A HREF="' + escape(node.url) + '">' + escape(node.name) + "</A>");
+                lines.push(pad + '<DT><A HREF="' + htmlEscape(node.url) + '">' + htmlEscape(node.name) + "</A>");
             } else if (node.children) {
-                lines.push(pad + "<DT><H3>" + escape(node.name) + "</H3>");
+                lines.push(pad + "<DT><H3>" + htmlEscape(node.name) + "</H3>");
                 lines.push(pad + "<DL><p>");
                 for (const child of node.children) {
                     add(child, depth + 1);

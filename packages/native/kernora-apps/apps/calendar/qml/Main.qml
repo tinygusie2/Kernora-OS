@@ -23,9 +23,9 @@ AppWindow {
     minimumWidth: 560
     minimumHeight: 480
     title: i18n("Calendar")
-    visible: !app.background
+    visible: !app.remindersOnly
 
-    readonly property bool background: startArguments.indexOf("reminders") >= 0
+    readonly property bool remindersOnly: startArguments.indexOf("reminders") >= 0
     readonly property string folder: decodeURIComponent(Files.standardFolder("home").toString().replace(/^file:\/\//, "")) + "/.local/share/kernora/calendar"
     readonly property url file: Qt.url("file://" + folder + "/events.json")
 
