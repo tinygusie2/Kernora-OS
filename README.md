@@ -59,7 +59,8 @@ are left out; the list is in `configs/live/excluded-packages.txt`.
 
 Install Lumo on an SSD. A hard disk (HDD) is not recommended: apps, menus and
 the first minute after login are very slow on one, because the desktop reads
-many small files at once. An SSD of 64 GB or more works well; NVMe is best.
+many small files at once. The installer asks for at least 12 GB of disk space
+and 1.5 GB of RAM.
 
 ## Building
 
