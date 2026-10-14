@@ -1,8 +1,18 @@
-kernora-desktop (1.4.30) UNRELEASED; urgency=medium
+kernora-desktop (1.4.32) UNRELEASED; urgency=medium
 
   * App icon for Focus (org.kernora.focus).
 
- -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:38:28 +0000
+ -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:54:17 +0000
+
+kernora-desktop (1.4.31) UNRELEASED; urgency=medium
+
+  * Reserve desktop icon cells occupied by widgets and reflow on geometry
+    changes, keeping sorted and manual layouts, selected icons and keyboard
+    focus coherent. From upstream Kernora OS.
+  * kernora-calamares: require calamares 3.3.14-1kernora2 and refresh the
+    translated city list when the installer language changes.
+
+ -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:45:00 +0000
 
 kernora-desktop (1.4.29) UNRELEASED; urgency=medium
 

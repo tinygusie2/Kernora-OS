@@ -1,5 +1,37 @@
 [
   {
+    "id": "2026-10-14-2",
+    "date": "2026-10-14",
+    "items": [
+      {
+        "icon": "preferences-desktop",
+        "title": {
+          "en": "Room for your widgets",
+          "nl": "Ruimte voor je widgets",
+          "ru": "Место для виджетов"
+        },
+        "text": {
+          "en": "Desktop icons now leave room for widgets. Moving or resizing a widget shifts overlapping shortcuts to free cells, and automatic sorting respects widget areas too. Sign out and back in after updating to apply it.",
+          "nl": "Pictogrammen op het bureaublad laten nu ruimte voor widgets. Verplaats of vergroot je een widget, dan schuiven snelkoppelingen eronder naar een vrije plek, en ook automatisch sorteren houdt rekening met widgets. Meld je na de update af en weer aan om het toe te passen.",
+          "ru": "Иконки рабочего стола теперь оставляют место для виджетов. При переносе или изменении размера виджета перекрытые ярлыки сдвигаются в свободные ячейки. Автоматическая сортировка тоже учитывает виджеты. После обновления выйдите из системы и войдите снова, чтобы применить изменение."
+        }
+      },
+      {
+        "icon": "preferences-desktop-locale",
+        "title": {
+          "en": "Choose your installer language",
+          "nl": "Kies de taal van de installer",
+          "ru": "Выбор языка установщика"
+        },
+        "text": {
+          "en": "Choosing a language in the installer now translates its pages right away and sets the language of your installed system. New Live images start in English; pick Nederlands or Русский in the boot menu if you prefer.",
+          "nl": "Kies je een taal in de installer, dan worden de pagina's meteen vertaald en krijgt je geïnstalleerde systeem die taal. Nieuwe Live-images starten in het Engels; kies Nederlands of Русский in het opstartmenu als je dat liever hebt.",
+          "ru": "Выбор языка в установщике теперь сразу переводит его страницы и задаёт язык устанавливаемой системы. Новые Live-образы запускаются на английском; Nederlands или Русский можно выбрать в меню загрузки."
+        }
+      }
+    ]
+  },
+  {
     "id": "2026-10-14",
     "date": "2026-10-14",
     "items": [

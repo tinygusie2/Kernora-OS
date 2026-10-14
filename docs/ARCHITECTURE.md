@@ -37,7 +37,7 @@ the Debian and Lumo versions.
 Two more packages are Debian's own sources rebuilt with Lumo patches, which
 `packages/derived/<name>` holds as a quilt series and a changelog entry:
 
-* `calamares` (`3.3.14-1kernora1`): the installer's partition page in
+* `calamares` (`3.3.14-1kernora2`): the installer's partition page in
   Material 3. `scripts/build-calamares-source` and
   `scripts/build-calamares-binary` build it.
 * `polkit-kde-agent-1` (`4:6.3.6-1kernora1`): the authentication prompt as a

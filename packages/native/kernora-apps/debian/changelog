@@ -1,4 +1,4 @@
-kernora-apps (1.1.38) UNRELEASED; urgency=medium
+kernora-apps (1.1.40) UNRELEASED; urgency=medium
 
   * Add Focus (kernora-focus): a Pomodoro timer that turns on focus mode.
     While it runs, the distracting apps chosen in Settings > Focus mode are
@@ -10,7 +10,15 @@ kernora-apps (1.1.38) UNRELEASED; urgency=medium
   * Focus in org.kernora.system finds and ends the processes of an app by
     its systemd unit or its program.
 
- -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:38:28 +0000
+ -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:54:17 +0000
+
+kernora-apps (1.1.39) UNRELEASED; urgency=medium
+
+  * What's new in English, Dutch and Russian: desktop icons leave room
+    for widgets, and the installer follows the language you choose.
+  * Require the desktop package with widget-aware icon placement.
+
+ -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:45:00 +0000
 
 kernora-apps (1.1.37) UNRELEASED; urgency=medium
 
