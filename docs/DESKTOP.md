@@ -449,7 +449,7 @@ the package and live-image tests.
   The medium's menu (`configs/live/grub.cfg`) looks for an installed
   Lumo on the computer's disks (`/usr/share/kernora/settings/Main.qml`
   next to `/boot/grub/grub.cfg`). When it finds one, its first and default
-  entry is "Lumo · Установленная система", which hands over to that
+  entry is "Lumo · Installed system", which hands over to that
   system's own GRUB menu. A computer or VM that still boots from the medium
   after the installation therefore starts the installed system, not the live
   session.

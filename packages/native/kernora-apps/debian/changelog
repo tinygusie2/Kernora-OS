@@ -1,3 +1,11 @@
+kernora-apps (1.1.39) UNRELEASED; urgency=medium
+
+  * What's new in English, Dutch and Russian: desktop icons leave room
+    for widgets, and the installer follows the language you choose.
+  * Require the desktop package with widget-aware icon placement.
+
+ -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:45:00 +0000
+
 kernora-apps (1.1.37) UNRELEASED; urgency=medium
 
   * What's new in Dutch, with a note for Lumo test build 3.
