@@ -171,7 +171,7 @@ QVariantList Focus::running(const QStringList &storageIds) const
     QVariantList result;
     for (const Target &target : wanted) {
         if (found.contains(target.storageId)) {
-            result.append(QVariantMap{{QStringLiteral("storageId"), target.storageId + QStringLiteral(".desktop")},
+            result.append(QVariantMap{{QStringLiteral("storageId"), QString(target.storageId + QStringLiteral(".desktop"))},
                                       {QStringLiteral("name"), target.name},
                                       {QStringLiteral("icon"), target.icon}});
         }
@@ -194,7 +194,7 @@ QVariantList Focus::block(const QStringList &storageIds)
             ended = ::kill(pid, SIGTERM) == 0 || ended;
         }
         if (ended) {
-            result.append(QVariantMap{{QStringLiteral("storageId"), target.storageId + QStringLiteral(".desktop")},
+            result.append(QVariantMap{{QStringLiteral("storageId"), QString(target.storageId + QStringLiteral(".desktop"))},
                                       {QStringLiteral("name"), target.name},
                                       {QStringLiteral("icon"), target.icon}});
         }
