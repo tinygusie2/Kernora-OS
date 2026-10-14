@@ -1,3 +1,17 @@
+kernora-apps (1.1.36) UNRELEASED; urgency=medium
+
+  * Task Manager, laid out like Windows Task Manager: processes grouped
+    into apps, background and system processes with disk use and an
+    expandable list per app; Performance with CPU per logical processor,
+    speed and up time, memory composition, each disk and network adapter
+    and graphics memory; new Details and Services pages; a context menu
+    with End task, Force end, Efficiency mode, Open file location, Search
+    online and Properties; Run new task and an update speed setting.
+  * Settings > Phone: find phones on a Dutch system.
+  * Name the desktop the Lumo portal serves.
+
+ -- Kernora Developers <developers@kernora.invalid>  Tue, 13 Oct 2026 23:30:00 +0200
+
 kernora-apps (1.1.35) UNRELEASED; urgency=medium
 
   * Add kernora-bluetooth-agent: a BlueZ pairing agent started at login that

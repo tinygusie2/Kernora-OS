@@ -1,3 +1,4 @@
 [portal]
 DBusName=org.freedesktop.impl.portal.desktop.kernora
 Interfaces=org.freedesktop.impl.portal.FileChooser;
+UseIn=KDE
