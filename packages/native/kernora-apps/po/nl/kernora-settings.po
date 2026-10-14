@@ -2794,3 +2794,69 @@ msgstr "Gebruik 4 tot 12 cijfers. De pincode werkt op het vergrendelscherm en he
 
 msgid "4 to 12 digits"
 msgstr "4 tot 12 cijfers"
+
+msgid "Focus mode"
+msgstr "Focusmodus"
+
+msgid "Distracting apps, Pomodoro timer"
+msgstr "Afleidende apps, pomodorotimer"
+
+msgid "Distracting apps"
+msgstr "Afleidende apps"
+
+msgid "focus mode block apps games social media concentrate study pomodoro"
+msgstr "focusmodus blokkeren apps games sociale media concentratie concentreren studeren huiswerk pomodoro"
+
+msgid "Pomodoro timer"
+msgstr "Pomodorotimer"
+
+msgid "focus time break rounds timer minutes"
+msgstr "focustijd pauze rondes timer minuten"
+
+msgid "Block distracting apps while the Focus timer runs. When it ends, or after a restart, everything is back to normal."
+msgstr "Blokkeer afleidende apps zolang de focustimer loopt. Als hij afloopt, of na een herstart, is alles weer normaal."
+
+msgid "Start focus"
+msgstr "Focus starten"
+
+msgid "%2 min focus and %3 min break, %1 round"
+msgid_plural "%2 min focus and %3 min break, %1 rounds"
+msgstr[0] "%2 min focus en %3 min pauze, %1 ronde"
+msgstr[1] "%2 min focus en %3 min pauze, %1 rondes"
+
+msgid "No apps are blocked yet."
+msgstr "Er worden nog geen apps geblokkeerd."
+
+msgid "Focus time"
+msgstr "Focustijd"
+
+msgid "Break"
+msgstr "Pauze"
+
+msgid "%1 minute"
+msgid_plural "%1 minutes"
+msgstr[0] "%1 minuut"
+msgstr[1] "%1 minuten"
+
+msgid "Rounds"
+msgstr "Rondes"
+
+msgid "%1 round"
+msgid_plural "%1 rounds"
+msgstr[0] "%1 ronde"
+msgstr[1] "%1 rondes"
+
+msgid "While you focus"
+msgstr "Tijdens het focussen"
+
+msgid "Hold back notifications during focus rounds"
+msgstr "Meldingen tegenhouden tijdens focusrondes"
+
+msgid "Allow distracting apps during breaks"
+msgstr "Afleidende apps toestaan in de pauzes"
+
+msgid "Otherwise they stay blocked until every round is done"
+msgstr "Anders blijven ze geblokkeerd tot alle rondes klaar zijn"
+
+msgid "Block during focus"
+msgstr "Blokkeren tijdens focus"

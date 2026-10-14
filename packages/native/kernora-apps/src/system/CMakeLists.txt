@@ -12,6 +12,7 @@ target_sources(kernorasystem PRIVATE
     defaultapps.cpp defaultapps.h
     displays.cpp displays.h
     files.cpp files.h
+    focus.cpp focus.h
     licenses.cpp licenses.h
     locales.cpp locales.h
     mpris.cpp mpris.h

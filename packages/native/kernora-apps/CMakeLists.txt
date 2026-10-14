@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 cmake_minimum_required(VERSION 3.25)
-project(kernora-apps VERSION 1.1.39 LANGUAGES C CXX)
+project(kernora-apps VERSION 1.1.40 LANGUAGES C CXX)
 
 set(QT_MIN_VERSION 6.8)
 set(KF_MIN_VERSION 6.13)
@@ -42,7 +42,7 @@ add_subdirectory(src/updatenotifier)
 add_subdirectory(src/bluetoothagent)
 add_subdirectory(src/pin)
 
-set(KERNORA_APPS settings files welcome editor photos player calculator screenshot store tasks calendar)
+set(KERNORA_APPS settings files welcome editor photos player calculator screenshot store tasks calendar focus)
 foreach(app ${KERNORA_APPS})
     install(DIRECTORY apps/${app}/qml/ DESTINATION ${KDE_INSTALL_DATADIR}/kernora/${app})
     install(FILES apps/${app}/org.kernora.${app}.desktop DESTINATION ${KDE_INSTALL_APPDIR})
@@ -55,7 +55,7 @@ install(FILES apps/welcome/org.kernora.welcome-autostart.desktop
         DESTINATION ${KDE_INSTALL_AUTOSTARTDIR} RENAME org.kernora.welcome.desktop)
 install(PROGRAMS data/systemsettings DESTINATION ${KDE_INSTALL_BINDIR})
 install(FILES data/copyright/librewolf DESTINATION ${KDE_INSTALL_DATADIR}/kernora/copyright)
-install(FILES data/knotifications/kernora-screenshot.notifyrc data/knotifications/kernora-updates.notifyrc data/knotifications/kernora-store.notifyrc data/knotifications/kernora-calendar.notifyrc
+install(FILES data/knotifications/kernora-screenshot.notifyrc data/knotifications/kernora-updates.notifyrc data/knotifications/kernora-store.notifyrc data/knotifications/kernora-calendar.notifyrc data/knotifications/kernora-focus.notifyrc
         DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 install(FILES data/autostart/org.kernora.update-notifier.desktop data/autostart/org.kernora.bluetooth-agent.desktop data/autostart/org.kernora.calendar-reminders.desktop DESTINATION ${KDE_INSTALL_AUTOSTARTDIR})
 install(FILES data/whatsnew.json DESTINATION ${KDE_INSTALL_DATADIR}/kernora)
