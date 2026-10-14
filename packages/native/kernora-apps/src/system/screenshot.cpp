@@ -133,7 +133,7 @@ void Screenshot::capture(const QString &method, const QVariantList &arguments, c
                                  .arg(QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation))
                                  .arg(QCoreApplication::applicationPid())
                                  .arg(counter);
-        image.copy().save(path, "PNG");
+        image.save(path, "PNG", 80);
         deliver(callback, true, QUrl::fromLocalFile(path), width, height);
     };
 
@@ -219,7 +219,7 @@ QUrl Screenshot::crop(const QUrl &image, int x, int y, int width, int height)
     const QImage cropped = source.copy(x, y, width, height);
     ++m_counter;
     const QString path = temporaryFile();
-    cropped.save(path, "PNG");
+    cropped.save(path, "PNG", 80);
     return QUrl::fromLocalFile(path);
 }
 
@@ -249,7 +249,7 @@ QUrl Screenshot::cropShape(const QUrl &image, const QVariantList &points)
     painter.end();
     ++m_counter;
     const QString file = temporaryFile();
-    shaped.save(file, "PNG");
+    shaped.save(file, "PNG", 80);
     return QUrl::fromLocalFile(file);
 }
 

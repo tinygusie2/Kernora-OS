@@ -8,6 +8,11 @@ kernora-apps (1.1.41) UNRELEASED; urgency=medium
     shown in a notification with a preview. Selecting it opens the snip to
     mark it up with a pen or highlighter in several colours, with undo,
     redo and clear; every change is saved and copied again.
+  * Screenshot starts hidden at login and stays ready, so Meta+Shift+S
+    opens the bar without a cold start; it no longer asks for launch
+    feedback, and its temporary images are removed after each snip.
+  * Apps can opt out of being shown when activated again
+    (showOnActivate: false on the window).
   * Screenshot in org.kernora.system crops freeform shapes and draws
     pen and highlighter strokes onto a snip.
   * Require the desktop package with the freeform, pen and highlighter

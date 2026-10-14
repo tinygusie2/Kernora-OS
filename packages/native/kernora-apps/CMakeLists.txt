@@ -57,7 +57,7 @@ install(PROGRAMS data/systemsettings DESTINATION ${KDE_INSTALL_BINDIR})
 install(FILES data/copyright/librewolf DESTINATION ${KDE_INSTALL_DATADIR}/kernora/copyright)
 install(FILES data/knotifications/kernora-screenshot.notifyrc data/knotifications/kernora-updates.notifyrc data/knotifications/kernora-store.notifyrc data/knotifications/kernora-calendar.notifyrc data/knotifications/kernora-focus.notifyrc
         DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
-install(FILES data/autostart/org.kernora.update-notifier.desktop data/autostart/org.kernora.bluetooth-agent.desktop data/autostart/org.kernora.calendar-reminders.desktop DESTINATION ${KDE_INSTALL_AUTOSTARTDIR})
+install(FILES data/autostart/org.kernora.update-notifier.desktop data/autostart/org.kernora.bluetooth-agent.desktop data/autostart/org.kernora.calendar-reminders.desktop data/autostart/org.kernora.screenshot-resident.desktop DESTINATION ${KDE_INSTALL_AUTOSTARTDIR})
 install(FILES data/whatsnew.json DESTINATION ${KDE_INSTALL_DATADIR}/kernora)
 install(FILES data/store/featured.json DESTINATION ${KDE_INSTALL_DATADIR}/kernora/store)
 install(FILES data/store/flathub.flatpakrepo DESTINATION ${KDE_INSTALL_DATADIR}/flatpak/remotes.d)

@@ -37,6 +37,8 @@ AppWindow {
     property string firstError: ""
     property bool capturing: false
     property bool reopen: false
+    readonly property bool showOnActivate: false
+    property var temporaries: []
 
     property string tool: "pen"
     property color penColor: "#202124"
@@ -61,11 +63,39 @@ AppWindow {
         modeEntry.value = value;
     }
 
+    function keep(url: url): void {
+        if (String(url).length > 0) {
+            temporaries = temporaries.concat([url]);
+        }
+    }
+
+    function tidy(): void {
+        const kept = [];
+        for (let i = 0; i < temporaries.length; ++i) {
+            if (String(temporaries[i]) === String(original)) {
+                kept.push(temporaries[i]);
+            } else {
+                Screenshot.discard(temporaries[i]);
+            }
+        }
+        temporaries = kept;
+    }
+
+    function idle(): void {
+        closeOverlays();
+        app.hide();
+        tidy();
+    }
+
     function start(): void {
         capturing = true;
         reopen = app.visible;
         snipToast.close();
-        startTimer.restart();
+        if (app.visible) {
+            startTimer.restart();
+        } else {
+            captureScreens();
+        }
     }
     Timer {
         id: startTimer
@@ -93,6 +123,7 @@ AppWindow {
             overlay.frozen = "";
             Screenshot.captureScreen(overlay.screen.name, false, (ok, url, width, height) => {
                 if (ok) {
+                    app.keep(url);
                     overlay.frozen = url;
                     overlay.frozenWidth = width;
                     overlay.frozenHeight = height;
@@ -134,8 +165,8 @@ AppWindow {
         if (reopen) {
             app.show();
             app.raise();
-        } else if (!app.visible && !snipToast.showing) {
-            Qt.quit();
+        } else {
+            tidy();
         }
     }
 
@@ -155,7 +186,9 @@ AppWindow {
             fail(i18n("The screenshot could not be saved."));
             return;
         }
+        keep(url);
         original = url;
+        tidy();
         strokes = [];
         redoStack = [];
         Screenshot.copyToClipboard(saved);
@@ -165,18 +198,7 @@ AppWindow {
             return;
         }
         snipToast.urls = [app.saved];
-        snipToast.showing = true;
         snipToast.sendEvent();
-        linger.restart();
-    }
-    Timer {
-        id: linger
-        interval: 10 * 60 * 1000
-        onTriggered: {
-            if (!app.visible && !app.capturing) {
-                Qt.quit();
-            }
-        }
     }
 
     function snipFullScreen(): void {
@@ -256,15 +278,19 @@ AppWindow {
     }
 
     function handleArguments(args: var): void {
-        start();
+        if (args.indexOf("resident") < 0) {
+            start();
+        }
     }
-    Component.onCompleted: start()
+    Component.onCompleted: {
+        if (startArguments.indexOf("resident") < 0) {
+            start();
+        }
+    }
 
     onClosing: close => {
-        if (snipToast.showing) {
-            close.accepted = false;
-            app.hide();
-        }
+        close.accepted = false;
+        app.hide();
     }
 
     Instantiator {
@@ -332,14 +358,14 @@ AppWindow {
 
             readonly property bool showRegion: app.mode === "rectangle" && picker.active
             Rectangle { color: "#80000000"; visible: !overlay.showRegion; anchors.fill: parent }
-            Rectangle { visible: overlay.showRegion; color: "#80000000"; x: 0; y: 0; width: parent.width; height: picker.top }
-            Rectangle { visible: overlay.showRegion; color: "#80000000"; x: 0; y: picker.top + picker.boxHeight; width: parent.width; height: parent.height - y }
-            Rectangle { visible: overlay.showRegion; color: "#80000000"; x: 0; y: picker.top; width: picker.left; height: picker.boxHeight }
-            Rectangle { visible: overlay.showRegion; color: "#80000000"; x: picker.left + picker.boxWidth; y: picker.top; width: parent.width - x; height: picker.boxHeight }
+            Rectangle { visible: overlay.showRegion; color: "#80000000"; x: 0; y: 0; width: parent.width; height: picker.boxTop }
+            Rectangle { visible: overlay.showRegion; color: "#80000000"; x: 0; y: picker.boxTop + picker.boxHeight; width: parent.width; height: parent.height - y }
+            Rectangle { visible: overlay.showRegion; color: "#80000000"; x: 0; y: picker.boxTop; width: picker.boxLeft; height: picker.boxHeight }
+            Rectangle { visible: overlay.showRegion; color: "#80000000"; x: picker.boxLeft + picker.boxWidth; y: picker.boxTop; width: parent.width - x; height: picker.boxHeight }
             Rectangle {
                 visible: overlay.showRegion
-                x: picker.left
-                y: picker.top
+                x: picker.boxLeft
+                y: picker.boxTop
                 width: picker.boxWidth
                 height: picker.boxHeight
                 color: "transparent"
@@ -370,8 +396,8 @@ AppWindow {
                 property real endX: 0
                 property real endY: 0
                 property var points: []
-                readonly property real left: Math.min(startX, endX)
-                readonly property real top: Math.min(startY, endY)
+                readonly property real boxLeft: Math.min(startX, endX)
+                readonly property real boxTop: Math.min(startY, endY)
                 readonly property real boxWidth: Math.abs(endX - startX)
                 readonly property real boxHeight: Math.abs(endY - startY)
 
@@ -410,7 +436,7 @@ AppWindow {
                             return;
                         }
                     } else if (boxWidth >= 4 && boxHeight >= 4) {
-                        app.snipRectangle(overlay, left, top, boxWidth, boxHeight);
+                        app.snipRectangle(overlay, boxLeft, boxTop, boxWidth, boxHeight);
                         return;
                     }
                     reset();
@@ -477,7 +503,6 @@ AppWindow {
     Notification {
         id: snipToast
 
-        property bool showing: false
 
         componentName: "kernora-screenshot"
         eventId: "captured"
@@ -495,12 +520,6 @@ AppWindow {
                 onActivated: app.openEditor()
             }
         ]
-        onClosed: {
-            showing = false;
-            if (!app.visible && !app.capturing) {
-                Qt.quit();
-            }
-        }
     }
 
     Shortcut { sequences: [StandardKey.New]; onActivated: app.start() }
@@ -612,7 +631,8 @@ AppWindow {
                 onClicked: {
                     Screenshot.discard(app.saved);
                     app.saved = "";
-                    Qt.quit();
+                    app.original = "";
+                    app.idle();
                 }
             }
         }
@@ -636,7 +656,7 @@ AppWindow {
                     id: ink
 
                     property var live: null
-                    readonly property real scale: preview.sourceSize.width > 0 ? preview.paintedWidth / preview.sourceSize.width : 1
+                    readonly property real ratio: preview.sourceSize.width > 0 ? preview.paintedWidth / preview.sourceSize.width : 1
 
                     function drawStroke(context: var, stroke: var): void {
                         const points = stroke.points;
@@ -668,7 +688,7 @@ AppWindow {
                     onPaint: {
                         const context = getContext("2d");
                         context.reset();
-                        context.scale(scale, scale);
+                        context.scale(ratio, ratio);
                         for (let i = 0; i < app.strokes.length; ++i) {
                             drawStroke(context, app.strokes[i]);
                         }
@@ -682,7 +702,7 @@ AppWindow {
                         cursorShape: Qt.CrossCursor
                         onPressed: mouse => {
                             const marker = app.tool === "marker";
-                            const unit = 1 / Math.max(0.01, ink.scale);
+                            const unit = 1 / Math.max(0.01, ink.ratio);
                             ink.live = {
                                 color: String(marker ? app.markerColor : app.penColor),
                                 width: (marker ? 18 : 3) * unit,
@@ -695,7 +715,7 @@ AppWindow {
                             if (!ink.live) {
                                 return;
                             }
-                            const unit = 1 / Math.max(0.01, ink.scale);
+                            const unit = 1 / Math.max(0.01, ink.ratio);
                             ink.live.points.push(mouse.x * unit, mouse.y * unit);
                             ink.requestPaint();
                         }
