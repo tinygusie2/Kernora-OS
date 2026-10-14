@@ -55,6 +55,12 @@ If an older image leaves an installed system at a black screen, see
 KDE's standalone apps (Dolphin, Konsole, Kate, Discover, Spectacle and others)
 are left out; the list is in `configs/live/excluded-packages.txt`.
 
+## Installing
+
+Install Lumo on an SSD. A hard disk (HDD) is not recommended: apps, menus and
+the first minute after login are very slow on one, because the desktop reads
+many small files at once. An SSD of 64 GB or more works well; NVMe is best.
+
 ## Building
 
 You need a Debian-based machine (Debian 13 in WSL 2 works) with:
