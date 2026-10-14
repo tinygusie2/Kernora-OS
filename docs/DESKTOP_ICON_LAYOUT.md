@@ -37,8 +37,10 @@ Each check inspected actual delegate rectangles after geometry settled and
 verified that all 12 source items survived without intersecting widget bounds.
 The standalone placement regression passed 2,000 deterministic layouts.
 
-Package versions are `kernora-desktop` / `kernora-calamares` 1.4.29 and
-`kernora-apps` 1.1.36. What's New has English and Russian entry `2026-10-13-9`.
+Upstream shipped this as `kernora-desktop` / `kernora-calamares` 1.4.29 and
+`kernora-apps` 1.1.36. In Lumo it is `kernora-desktop` / `kernora-calamares`
+1.4.31 and `kernora-apps` 1.1.39, with What's New entry `2026-10-14-2` in
+English, Dutch and Russian.
 These changes do not alter the Calamares executable or networking settings.
 
 A real dpkg upgrade from desktop 1.4.28 / apps 1.1.35 passed in the guest.

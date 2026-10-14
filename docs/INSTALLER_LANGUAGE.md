@@ -33,6 +33,11 @@ Packages:
 - `kernora-apps 1.1.35`: What's New, entry `2026-10-13-8`, dated 13 October
   2026, in English and Russian.
 
+In Lumo the same change ships as `kernora-desktop` / `kernora-calamares` 1.4.31
+and `kernora-apps` 1.1.39, What's New entry `2026-10-14-2` in English, Dutch
+and Russian. The Lumo boot menu has the ids `live-en`, `live-nl`, `live-ru` and
+`live-safe`; English stays the default.
+
 The old Calamares package failed the actual installer regression at the
 location-page language change. The new packages passed English → Russian →
 German → English switching, a Russian choice on the location page, hidden
