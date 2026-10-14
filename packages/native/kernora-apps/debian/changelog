@@ -1,3 +1,17 @@
+kernora-apps (1.1.38) UNRELEASED; urgency=medium
+
+  * Add Focus (kernora-focus): a Pomodoro timer that turns on focus mode.
+    While it runs, the distracting apps chosen in Settings > Focus mode are
+    closed as soon as they open, and Do Not Disturb holds back
+    notifications. When the timer is over, on Stop or after a restart the
+    desktop is back to normal.
+  * Settings: new Focus mode page with the distracting apps, focus and
+    break length, rounds, Do Not Disturb and apps in breaks.
+  * Focus in org.kernora.system finds and ends the processes of an app by
+    its systemd unit or its program.
+
+ -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:38:28 +0000
+
 kernora-apps (1.1.37) UNRELEASED; urgency=medium
 
   * What's new in Dutch, with a note for Lumo test build 3.

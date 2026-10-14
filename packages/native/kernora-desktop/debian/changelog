@@ -1,3 +1,9 @@
+kernora-desktop (1.4.30) UNRELEASED; urgency=medium
+
+  * App icon for Focus (org.kernora.focus).
+
+ -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 18:38:28 +0000
+
 kernora-desktop (1.4.29) UNRELEASED; urgency=medium
 
   * Dutch colour names in the palettes; the orange default colour is

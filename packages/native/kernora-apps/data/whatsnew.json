@@ -4,6 +4,19 @@
     "date": "2026-10-14",
     "items": [
       {
+        "icon": "org.kernora.focus",
+        "title": {
+          "en": "Focus mode",
+          "nl": "Focusmodus",
+          "ru": "Режим фокусировки"
+        },
+        "text": {
+          "en": "The new Focus app is a Pomodoro timer. Choose your distracting apps in Settings › Focus mode; they stay closed until the timer is over.",
+          "nl": "De nieuwe app Focus is een pomodorotimer. Kies je afleidende apps in Instellingen › Focusmodus; ze blijven dicht tot de timer afloopt.",
+          "ru": "Новое приложение «Фокус» — таймер помодоро. Выберите отвлекающие приложения в Настройках › Режим фокусировки; они не откроются, пока идёт таймер."
+        }
+      },
+      {
         "icon": "utilities-system-monitor",
         "title": {
           "en": "A new Task Manager",

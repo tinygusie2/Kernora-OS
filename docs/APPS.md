@@ -27,6 +27,7 @@ of the shell: the same tokens, components, symbols and motion.
 | Task Manager (`kernora-tasks`) | System Monitor | Laid out like Windows Task Manager, see below. Reads `/proc` and `/sys` through `Tasks` in `org.kernora.system`. Ctrl+Shift+Esc opens it. |
 | Terminal | Konsole | Alacritty started as `org.kernora.terminal`, with colours generated from the tokens and switched with the theme. Ctrl+Alt+T opens it (the entry is linked into `/usr/share/kglobalaccel`). |
 | Calendar (`kernora-calendar`) | — | Day, week and month views; events with a time or all day, repeating daily, weekly, monthly or yearly, with a reminder, location and notes; `.ics` import (also by opening the file) and export to Documents. Events are kept in `~/.local/share/kernora/calendar/events.json`. `kernora-calendar reminders` starts hidden at login and sends the reminders (`kernora-calendar.notifyrc`); opening the app shows that instance, and closing the window hides it again. |
+| Focus (`kernora-focus`) | — | Focus mode with a Pomodoro timer, see below. |
 | Welcome (`kernora-welcome`) | Plasma Welcome | Runs at the first logins of an installed system (`--first-run`, closes in the live session) until finished. |
 | File chooser (`kernora-filechooser`) | KDE's file dialog | Every program's open, save and folder dialogs; see below. |
 
@@ -106,6 +107,34 @@ High (0.5 s), Normal (1 s), Low (4 s) or Paused and is kept in
 Shortcuts: Delete ends the selected task, Shift+Delete forces it, Ctrl+F
 searches by name or PID, Ctrl+N runs a new task, F5 refreshes, Ctrl+1 to
 Ctrl+5 switch pages.
+
+### Focus
+
+Focus is a Pomodoro timer that turns on focus mode while it runs. A session
+is a number of focus rounds (25 minutes by default) with a break (5 minutes)
+between them; it ends after the last focus round. Settings › Focus mode
+chooses the distracting apps, the lengths, the number of rounds, whether Do
+Not Disturb is on during focus rounds and whether the distracting apps are
+allowed in the breaks. Everything is kept in `kernorafocusrc` (`[General]`
+`Apps`, a comma-separated list of desktop entries, `FocusMinutes`,
+`BreakMinutes`, `Rounds`, `DoNotDisturb`, `AppsInBreaks`), and the running
+timer picks up changes straight away.
+
+While focus mode is on, `Focus.block()` in `org.kernora.system` looks through
+`/proc` every two seconds and ends (SIGTERM) the user's processes of a chosen
+app: those in its systemd unit (`app-<id>@….service` or `app-<id>-….scope`,
+also for Flatpaks) and those running its program from `Exec=`. Focus then
+comes to the front and says the app is blocked. Before a session starts,
+Focus lists the chosen apps that are open and asks before closing them. Do
+Not Disturb uses `org.freedesktop.Notifications.Inhibit`; it is lifted in the
+breaks so the break notifications show (`kernora-focus.notifyrc`).
+
+Focus mode is not saved anywhere: it exists only while `kernora-focus` runs
+a session. When the timer is over, when you press Stop, or after a restart,
+the desktop is back to normal, and the inhibition goes with the process.
+Closing the window during a session minimises it instead; the window title
+shows the time left. `kernora-focus start` (also the *Start focus* action of
+its menu entry and the button in Settings) starts a session.
 
 ## Advanced settings
 
