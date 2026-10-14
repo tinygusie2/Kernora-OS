@@ -79,7 +79,10 @@ QString Appearance::colour() const
 
 QVariantList Appearance::colours() const
 {
-    const bool russian = KLocalizedString::languages().value(0).startsWith(QLatin1String("ru"));
+    QStringList nameKeys;
+    for (const QString &language : KLocalizedString::languages()) {
+        nameKeys << QStringLiteral("name_") + language << QStringLiteral("name_") + language.section(QLatin1Char('_'), 0, 0);
+    }
     QList<QPair<int, QVariantMap>> found;
     QStringList seen;
     const QStringList roots = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("kernora/palettes"),
@@ -94,8 +97,14 @@ QVariantList Appearance::colours() const
                 continue;
             }
             seen.append(id);
-            QVariantMap entry{{QStringLiteral("id"), id},
-                              {QStringLiteral("name"), group.readEntry(russian ? "name_ru" : "name", id)}};
+            QString name = group.readEntry("name", id);
+            for (const QString &key : std::as_const(nameKeys)) {
+                if (group.hasKey(key)) {
+                    name = group.readEntry(key, name);
+                    break;
+                }
+            }
+            QVariantMap entry{{QStringLiteral("id"), id}, {QStringLiteral("name"), name}};
             for (const QString &mode : {QStringLiteral("dark"), QStringLiteral("light")}) {
                 QVariantMap swatch;
                 for (const QString &role : {QStringLiteral("primary"), QStringLiteral("secondaryContainer"), QStringLiteral("tertiary")}) {

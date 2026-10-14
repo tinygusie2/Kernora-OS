@@ -353,6 +353,7 @@ def palette_file() -> str:
         f"seed={design.SEED.lstrip('#')}",
         f"name={info['en']}",
         f"name_ru={info['ru']}",
+        f"name_nl={info['nl']}",
     ]
     for mode in ("dark", "light"):
         for role in ("primary", "secondaryContainer", "tertiary"):

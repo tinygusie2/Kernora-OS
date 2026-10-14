@@ -1,3 +1,11 @@
+kernora-apps (1.1.37) UNRELEASED; urgency=medium
+
+  * What's new in Dutch, with a note for Lumo test build 3.
+  * Settings > Wallpaper & style: colour names in the system language,
+    read from name_<language> in the palette.
+
+ -- Kernora Developers <developers@kernora.invalid>  Wed, 14 Oct 2026 08:21:43 +0000
+
 kernora-apps (1.1.36) UNRELEASED; urgency=medium
 
   * Task Manager, laid out like Windows Task Manager: processes grouped
